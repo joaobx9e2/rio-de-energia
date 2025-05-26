@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rio de Energia - Usina Hidrelétrica</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    .hero {
+      background: url('https://imgur.com/HRI90HQ.png') no-repeat center center/cover;
+      height: 100vh;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(13, 71, 161, 0.6);
+      z-index: 0;
+    }
+
+    .hero * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      text-shadow: 1px 1px 4px #000;
+    }
+
+    .hero p {
+      font-size: 1.4em;
+      margin-top: 10px;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .hero .button {
+      margin-top: 35px;
+      padding: 18px 36px;
+      font-size: 1.4em;
+      background: #ff5722;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .hero .button:hover {
+      background: #e64a19;
+    }
+
+    .email-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .email-icon img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    .email-icon:hover img {
+      transform: scale(1.1);
+    }
+
+    .email-icon .tooltip {
+      margin-top: 6px;
+      background-color: #ffffff;
+      color: #0d47a1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      font-weight: bold;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+    }
+
+    .email-icon:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    section {
+      background: white;
+      margin: 30px auto;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 1000px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .section-content {
+      flex: 1 1 60%;
+    }
+
+    .section-content h2 {
+      color: #0d47a1;
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    .section-content p,
+    .section-content ul {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    .section-image {
+      flex: 1 1 35%;
+      text-align: right;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .section-image img {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.6em;
+      font-weight: bold;
+      background-color: rgba(0,0,0,0.6);
+      padding: 10px 20px;
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .section-image:hover .overlay-text {
+      opacity: 1;
+    }
+
+    .image-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      cursor: pointer;
+    }
+
+    .close-btn img {
+      width: 40px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #666;
+      font-size: 0.9em;
+      background-color: #e3f2fd;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2em;
+        padding: 0 10px;
+      }
+
+      .hero p {
+        font-size: 1.1em;
+        padding: 0 10px;
+      }
+
+      .hero .button {
+        font-size: 1.1em;
+        padding: 14px 28px;
+        margin-top: 25px;
+      }
+
+      .email-icon {
+        top: 10px;
+        right: 10px;
+      }
+
+      section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        margin: 20px 10px;
+      }
+
+      .section-content {
+        flex: 1 1 100%;
+      }
+
+      .section-content h2 {
+        font-size: 1.6em;
+      }
+
+      .section-content p,
+      .section-content ul {
+        font-size: 1em;
+      }
+
+      .section-image {
+        flex: 1 1 100%;
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .section-image img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .overlay-text {
+        font-size: 1.2em;
+        padding: 8px 16px;
+      }
+
+      footer {
+        font-size: 0.85em;
+        padding: 20px 10px;
+      }
+
+      .close-btn {
+        top: 10px;
+        right: 15px;
+      }
+
+      .close-btn img {
+        width: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <a href="mailto:joaoemanoel4637@gmail.com" class="email-icon">
+      <img src="https://i.imgur.com/ML69CtB.png" alt="Fale Conosco" />
+      <span class="tooltip">Fale Conosco</span>
+    </a>
+
+    <h1>Energia no Coração do Tocantins</h1>
+    <p>Descubra o poder da Usina Hidrelétrica Luis Eduardo Magalhães</p>
+    <a class="button button-scroll" onclick="document.getElementById('conteudo').scrollIntoView({ behavior: 'smooth' });">Explorar Conteúdo</a>
+  </div>
+
+  <div id="conteudo">
+    <section>
+      <div class="section-content">
+        <h2>O que é uma Usina Hidrelétrica?</h2>
+        <p>Uma usina hidrelétrica é uma instalação que transforma a energia da água em movimento em energia elétrica, por meio de turbinas e geradores.</p>
+      </div>
+      <div class="section-image" onclick="expandImage('https://i.imgur.com/RlRKYq1.png')">
+        <img src="https://i.imgur.com/RlRKYq1.png" alt="Usina" />
+        <div class="overlay-text">Expandir</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-content">
+        <h2>Impactos Ambientais</h2>
+        <ul>
+          <li>Alagamento de áreas naturais e urbanas</li>
+          <li>Deslocamento de comunidades</li>
+          <li>Alterações no ecossistema</li>
+          <li>Emissão de gases na decomposição da biomassa</li>
+        </ul>
+      </div>
+      <div class="section-image" onclick="expandImage('https://i.imgur.com/ygb0tef.png')">
+        <img src="https://i.imgur.com/ygb0tef.png" alt="Impactos Ambientais" />
+        <div class="overlay-text">Expandir</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-content">
+        <h2>Vantagens</h2>
+        <ul>
+          <li>Energia limpa e renovável</li>
+          <li>Baixa emissão de gases poluentes</li>
+          <li>Grande capacidade de geração</li>
+          <li>Vida útil prolongada</li>
+        </ul>
+      </div>
+      <div class="section-image" onclick="expandImage('https://i.imgur.com/U5VpWkw.png')">
+        <img src="https://i.imgur.com/U5VpWkw.png" alt="Vantagens" />
+        <div class="overlay-text">Expandir</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-content">
+        <h2>Funcionamento da Usina</h2>
+        <p>A água represada é liberada para girar turbinas conectadas a geradores, convertendo a energia cinética em eletricidade que é transmitida por linhas de alta tensão.</p>
+      </div>
+      <div class="section-image" onclick="expandImage('https://i.imgur.com/Mr60m3Z.png')">
+        <img src="https://i.imgur.com/Mr60m3Z.png" alt="Funcionamento" />
+        <div class="overlay-text">Expandir</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-content">
+        <h2>A Usina de Lajeado</h2>
+        <p>Inaugurada em 2001, a UHE Luis Eduardo Magalhães está localizada no rio Tocantins e tem capacidade instalada de 902,5 MW, sendo essencial para o fornecimento de energia à região.</p>
+      </div>
+      <div class="section-image" onclick="expandImage('https://i.imgur.com/NT60Qq5.png')">
+        <img src="https://i.imgur.com/NT60Qq5.png" alt="Usina Lajeado" />
+        <div class="overlay-text">Expandir</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- MODAL DE IMAGEM -->
+  <div class="image-modal" id="imageModal" onclick="closeModal()">
+    <span class="close-btn" onclick="closeModal(event)">
+      <img src="https://i.imgur.com/pC2yYB6.png" alt="Fechar" />
+    </span>
+    <img id="modalImage" src="" alt="Imagem Expandida" />
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Rio de Energia | Projeto educacional</p>
+  </footer>
+
+  <script>
+    function expandImage(src) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImage');
+      modal.style.display = 'flex';
+      modalImg.src = src;
+    }
+
+    function closeModal(event) {
+      if (event) event.stopPropagation();
+      document.getElementById('imageModal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
