@@ -334,28 +334,36 @@
           font-weight: bold;
       }
 
-      .mobile-hamburger-icon {
-          font-size: 1.8em; /* Tamanho do ícone */
+      /* Estilos para os ícones no top bar */
+      .mobile-icon {
+          font-size: 1.8em; /* Tamanho comum para ambos os ícones */
           cursor: pointer;
           padding: 5px; /* Área clicável maior */
           user-select: none; /* Evita seleção de texto */
       }
 
-      .mobile-toggle-icon {
-          font-size: 1.8em; /* Tamanho do ícone */
-          cursor: pointer;
-          padding: 5px; /* Área clicável maior */
-          user-select: none; /* Evita seleção de texto */
-          transform: rotate(0deg); /* Começa apontando para direita (seta) */
+      .mobile-toggle-main-menu { /* Seta para o menu principal */
+          transform: rotate(0deg);
           transition: transform 0.3s ease;
       }
 
-      .mobile-toggle-icon.open {
+      .mobile-toggle-main-menu.open {
           transform: rotate(90deg); /* Gira para baixo quando aberto */
       }
 
+      .mobile-toggle-extra-menu { /* Hambúrguer para o menu extra */
+          transform: rotate(0deg);
+          transition: transform 0.3s ease;
+      }
 
-      .mobile-menu-content {
+      .mobile-toggle-extra-menu.open {
+          /* Você pode querer uma animação para o hambúrguer virar um X, mas por simplicidade, manteremos a rotação ou nenhuma */
+          /* Por exemplo, um X pode ser &#10005; */
+      }
+
+      /* Estilos para os conteúdos dos menus ocultos */
+      .mobile-main-menu-content,
+      .mobile-extra-menu-content {
           list-style: none;
           padding: 0;
           margin: 0;
@@ -366,20 +374,24 @@
           transition: max-height 0.4s ease-out; /* Animação suave */
       }
 
-      .mobile-menu-content.open {
+      .mobile-main-menu-content.open,
+      .mobile-extra-menu-content.open {
           max-height: 500px; /* Altura suficiente para mostrar todos os itens */
       }
 
-      .mobile-menu-content li {
+      .mobile-main-menu-content li,
+      .mobile-extra-menu-content li {
           text-align: left; /* Alinha o texto dos itens */
           border-bottom: 1px solid rgba(255,255,255,0.1); /* Separador visual */
       }
 
-      .mobile-menu-content li:last-child {
+      .mobile-main-menu-content li:last-child,
+      .mobile-extra-menu-content li:last-child {
           border-bottom: none; /* Remove borda do último item */
       }
 
-      .mobile-menu-content li a {
+      .mobile-main-menu-content li a,
+      .mobile-extra-menu-content li a {
           color: white;
           text-decoration: none;
           display: block; /* Para o padding funcionar na área toda */
@@ -388,30 +400,9 @@
           transition: background-color 0.3s;
       }
 
-      .mobile-menu-content li a:hover {
+      .mobile-main-menu-content li a:hover,
+      .mobile-extra-menu-content li a:hover {
           background-color: #ff5722;
-      }
-
-      /* Estilos para o dropdown dentro do menu mobile */
-      .mobile-menu-content li.dropdown-mobile-options .dropdown-content-mobile {
-          position: static;
-          display: block; /* Sempre visível quando o menu principal está aberto, mas escondido pelo max-height */
-          background-color: #1a237e; /* Cor um pouco diferente para o sub-menu */
-          width: 100%;
-          box-shadow: none;
-          border-radius: 0;
-          max-height: 0; /* Esconde o sub-menu por padrão */
-          overflow: hidden;
-          transition: max-height 0.3s ease-out;
-      }
-
-      .mobile-menu-content li.dropdown-mobile-options.active .dropdown-content-mobile {
-          max-height: 200px; /* Altura para mostrar itens do sub-menu */
-      }
-
-      .mobile-menu-content li.dropdown-mobile-options .dropdown-content-mobile a {
-          padding: 10px 30px; /* Mais indentado */
-          font-size: 1em;
       }
 
       /* Demais estilos responsivos existentes (mantidos como estão) */
@@ -527,22 +518,23 @@
 
   <div class="navbar-mobile-wrapper">
     <nav class="mobile-top-bar">
-      <span class="mobile-hamburger-icon">&#9776;</span> <span class="mobile-toggle-icon" onclick="toggleMobileMenu()">&#9654;</span> </nav>
-    <ul class="mobile-menu-content" id="mobileMenu">
-      <li><a href="#o-que-e" onclick="closeMobileMenuAndScroll(this)">O que é?</a></li>
-      <li><a href="#impactos" onclick="closeMobileMenuAndScroll(this)">Impactos Ambientais</a></li>
-      <li><a href="#vantagens" onclick="closeMobileMenuAndScroll(this)">Vantagens</a></li>
-      <li><a href="#desvantagens" onclick="closeMobileMenuAndScroll(this)">Desvantagens</a></li>
-      <li><a href="#uhe-lajeado" onclick="closeMobileMenuAndScroll(this)">UHE Lajeado</a></li>
-      <li><a href="#curiosidades" onclick="closeMobileMenuAndScroll(this)">Curiosidades</a></li>
-      <li class="dropdown-mobile-options" onclick="toggleDropdownMobile(this)">
-        <a href="javascript:void(0)">&#9776; Opções Extras</a>
-        <div class="dropdown-content-mobile">
-          <a href="#">Quem somos nós</a>
-          <a href="#">Script</a>
-          <a href="#">Links</a>
-        </div>
-      </li>
+      <span class="mobile-icon mobile-toggle-extra-menu" onclick="toggleExtraMenu()">&#9776;</span>
+      <span class="mobile-icon mobile-toggle-main-menu" onclick="toggleMainMenu()">&#9654;</span>
+    </nav>
+
+    <ul class="mobile-main-menu-content" id="mobileMainMenu">
+      <li><a href="#o-que-e" onclick="closeAllMenusAndScroll(this)">O que é?</a></li>
+      <li><a href="#impactos" onclick="closeAllMenusAndScroll(this)">Impactos Ambientais</a></li>
+      <li><a href="#vantagens" onclick="closeAllMenusAndScroll(this)">Vantagens</a></li>
+      <li><a href="#desvantagens" onclick="closeAllMenusAndScroll(this)">Desvantagens</a></li>
+      <li><a href="#uhe-lajeado" onclick="closeAllMenusAndScroll(this)">UHE Lajeado</a></li>
+      <li><a href="#curiosidades" onclick="closeAllMenusAndScroll(this)">Curiosidades</a></li>
+    </ul>
+
+    <ul class="mobile-extra-menu-content" id="mobileExtraMenu">
+      <li><a href="#" onclick="closeAllMenus()">Quem somos nós</a></li>
+      <li><a href="#" onclick="closeAllMenus()">Script</a></li>
+      <li><a href="#" onclick="closeAllMenus()">Links</a></li>
     </ul>
   </div>
 
@@ -676,7 +668,7 @@
       document.getElementById('imageModal').style.display = 'none';
     }
 
-    // Função para scroll suave (ajustada para fechar o menu mobile se estiver aberto)
+    // Função para scroll suave (ajustada para fechar os menus mobile)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -686,11 +678,7 @@
                 return;
             }
 
-            // Fecha o menu mobile se estiver aberto (novo comportamento)
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (mobileMenu && mobileMenu.classList.contains('open')) {
-                toggleMobileMenu(); // Reusa a função para fechar e alternar o ícone
-            }
+            closeAllMenus(); // Fecha ambos os menus mobile antes de rolar
 
             document.querySelector(targetId).scrollIntoView({
                 behavior: 'smooth'
@@ -705,7 +693,7 @@
 
     // Fecha o dropdown de desktop se o usuário clicar fora dele
     window.onclick = function(event) {
-      // Verifica se o evento não veio de um elemento dentro do menu mobile-top-bar
+      // Verifica se o evento não veio de um elemento dentro da barra superior mobile
       if (!event.target.closest('.mobile-top-bar')) {
         if (!event.target.matches('.dropbtn') && !event.target.matches('.dropdown-content a')) {
           var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -719,24 +707,64 @@
       }
     }
 
-    // --- Funções para o novo menu mobile (off-canvas com seta na direita) ---
-    function toggleMobileMenu() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        const toggleIcon = document.querySelector('.mobile-toggle-icon');
+    // --- Funções para os novos menus mobile ---
 
-        mobileMenu.classList.toggle('open');
-        toggleIcon.classList.toggle('open'); // Altera a seta
+    // Função para fechar todos os menus mobile
+    function closeAllMenus() {
+        const mobileMainMenu = document.getElementById('mobileMainMenu');
+        const mobileExtraMenu = document.getElementById('mobileExtraMenu');
+        const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu');
+        const toggleExtraMenuIcon = document.querySelector('.mobile-toggle-extra-menu');
 
-        // Fecha o sub-dropdown de "Opções Extras" ao fechar o menu principal
-        if (!mobileMenu.classList.contains('open')) {
-            const dropdownsMobile = document.querySelectorAll('.mobile-menu-content .dropdown-mobile-options');
-            dropdownsMobile.forEach(dropdown => dropdown.classList.remove('active'));
+        if (mobileMainMenu.classList.contains('open')) {
+            mobileMainMenu.classList.remove('open');
+            toggleMainMenuIcon.classList.remove('open');
+        }
+        if (mobileExtraMenu.classList.contains('open')) {
+            mobileExtraMenu.classList.remove('open');
+            // Se você quiser uma animação para o ícone de hambúrguer, pode adicionar aqui
         }
     }
 
-    // Função para alternar o dropdown "Opções Extras" dentro do menu mobile
-    function toggleDropdownMobile(element) {
-        element.classList.toggle("active");
+    // Função para abrir/fechar o menu principal (usando a seta)
+    function toggleMainMenu() {
+        const mobileMainMenu = document.getElementById('mobileMainMenu');
+        const mobileExtraMenu = document.getElementById('mobileExtraMenu'); // Outro menu
+        const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu');
+
+        // Se o menu extra estiver aberto, feche-o primeiro
+        if (mobileExtraMenu.classList.contains('open')) {
+            mobileExtraMenu.classList.remove('open');
+            // Adicione aqui se houver uma classe para o ícone de hambúrguer que precisa ser removida
+        }
+
+        mobileMainMenu.classList.toggle('open');
+        toggleMainMenuIcon.classList.toggle('open');
+    }
+
+    // Função para abrir/fechar o menu extra (usando o hambúrguer)
+    function toggleExtraMenu() {
+        const mobileMainMenu = document.getElementById('mobileMainMenu'); // Outro menu
+        const mobileExtraMenu = document.getElementById('mobileExtraMenu');
+        const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu'); // Ícone da seta
+
+        // Se o menu principal estiver aberto, feche-o primeiro
+        if (mobileMainMenu.classList.contains('open')) {
+            mobileMainMenu.classList.remove('open');
+            toggleMainMenuIcon.classList.remove('open');
+        }
+
+        mobileExtraMenu.classList.toggle('open');
+        // Não há uma classe 'open' para o ícone do hambúrguer, mas poderia haver
+    }
+
+    // Função para fechar todos os menus e rolar para a seção (usada nos links do menu principal)
+    function closeAllMenusAndScroll(element) {
+        closeAllMenus();
+        const targetId = element.getAttribute('href');
+        if (targetId && targetId !== '#') {
+            document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        }
     }
   </script>
 
