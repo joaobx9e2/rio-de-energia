@@ -200,6 +200,18 @@
       flex-wrap: wrap;
     }
 
+    /* Correção para o "scroll-padding-top" */
+    section[id] {
+      scroll-margin-top: 100px; /* Ajuste este valor de acordo com a altura da sua navbar */
+    }
+    /* Para mobile, pode ser necessário ajustar o valor devido à altura da mobile-top-bar */
+    @media (max-width: 768px) {
+        section[id] {
+            scroll-margin-top: 70px; /* Altura da mobile-top-bar */
+        }
+    }
+
+
     .section-content {
       flex: 1 1 60%;
     }
@@ -807,7 +819,7 @@
           <li><strong>Deslocamento de populações ribeirinhas e indígenas:</strong> comunidades inteiras precisam ser realocadas.</li>
           <li><strong>Alteração no curso natural dos rios:</strong> afeta a fauna aquática, como peixes que precisam migrar.</li>
           <li><strong>Mudanças no clima local:</strong> o grande espelho d’água pode influenciar temperatura e umidade da região.</li>
-          <li><strong>Emissão de gases de efeito estufa:</strong> matéria orgânica submersa emite metano, um gás poluente.</li>
+          <li><strong>Emissão de gases de efeito estufa:  </strong> matéria orgânica submersa emite metano, um gás poluente.</li>
           </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/ygb0tef.png')">
@@ -1008,9 +1020,14 @@
 
             closeAllMobileMenus(); // Fecha ambos os menus mobile antes de rolar
 
-            document.querySelector(targetId).scrollIntoView({
-                behavior: 'smooth'
-            });
+            // Para garantir que o scroll leve ao local correto, o scroll-margin-top no CSS é o mais eficaz.
+            // O JavaScript abaixo se torna menos crítico para o posicionamento, mas mantém a animação.
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
