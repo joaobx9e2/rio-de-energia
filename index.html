@@ -318,12 +318,15 @@
         top: 0;
         width: 100%; /* Largura total */
         height: 100%; /* Altura total */
-        overflow: auto; /* Habilita scroll se o conteúdo for grande */
         background: url('https://imgur.com/6GbvOgy.png') no-repeat center center fixed; /* Fundo da escola */
         background-size: cover;
         /* display: flex;  Esta propriedade será ativada pelo JS quando o modal for mostrado */
         justify-content: center;
         align-items: center;
+        /* Adicionado para celular para evitar o corte superior */
+        overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
+        -webkit-overflow-scrolling: touch; /* Suaviza o scroll em iOS */
+        padding: 20px 0; /* Padding vertical para garantir espaço */
     }
 
     /* Adiciona um overlay escuro sobre a imagem de fundo do modal */
@@ -334,14 +337,15 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(13, 71, 161, 0.8); /* Azul escuro semi-transparente */
+        /* Ajustado: Azul escuro semi-transparente, com opacidade reduzida */
+        background: rgba(13, 71, 161, 0.6); /* Era 0.8, agora 0.6 para aparecer mais a imagem */
         z-index: -1; /* Fica atrás do conteúdo, mas à frente do background */
     }
 
     .modal-content-quem-somos-nos {
         position: relative;
         background-color: rgba(255, 255, 255, 0.95); /* Fundo branco semi-transparente */
-        margin: auto;
+        margin: auto; /* Centraliza no eixo Y em telas maiores */
         padding: 30px;
         border-radius: 12px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.4);
@@ -351,6 +355,11 @@
         animation: fadeInModal 0.5s ease-out; /* Animação de entrada */
         transform: scale(0.95); /* Começa um pouco menor */
         transition: transform 0.3s ease-out; /* Suaviza a transição */
+        /* Ajustado para celular */
+        width: 90%; /* Ocupa 90% da largura em telas menores */
+        max-height: 90vh; /* Limita a altura para caber na tela do celular */
+        overflow-y: auto; /* Permite scroll interno se o conteúdo exceder max-height */
+        -webkit-overflow-scrolling: touch;
     }
 
     @keyframes fadeInModal {
@@ -640,9 +649,11 @@
 
       /* Responsividade para o modal Quem Somos Nós */
       .modal-content-quem-somos-nos {
-          margin: 20px;
+          margin: 20px auto; /* Adicionado auto para centralizar */
           padding: 25px;
           max-width: 90%;
+          min-height: unset; /* Remove min-height fixo */
+          height: auto; /* Altura automática */
       }
 
       .modal-content-quem-somos-nos h1 {
@@ -736,7 +747,7 @@
       <div class="section-content">
         <h2>O que é uma Usina Hidrelétrica?</h2>
         <p>Uma usina hidrelétrica é uma instalação que gera energia elétrica a partir da força da água em movimento. Ela funciona aproveitando a correnteza dos rios: a água passa por turbinas gigantes, fazendo-as girar, e esse movimento gera eletricidade através de geradores.</p>
-        <p>É uma das fontes de energia mais utilizadas no Brasil, por ser <strong>renovável</strong>, <strong>limpa</strong> e ideal para o nosso país, que tem muitos rios com grande volume de água.</p>
+        <p>É uma das fontes de energia mais utilizadas no Brasil, por ser **renovável**, **limpa** e ideal para o nosso país, que tem muitos rios com grande volume de água.</p>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/RlRKYq1.png')">
         <img src="https://i.imgur.com/RlRKYq1.png" alt="Usina" />
@@ -748,11 +759,11 @@
       <div class="section-content">
         <h2>Impactos Ambientais das Usinas Hidrelétricas</h2>
         <ul>
-          <li><strong>Alagamento de grandes áreas:</strong> causa perda de florestas, terras agricultáveis e habitats naturais.</li>
-          <li><strong>Deslocamento de populações ribeirinhas e indígenas:</strong> comunidades inteiras precisam ser realocadas.</li>
-          <li><strong>Alteração no curso natural dos rios:</strong> afeta a fauna aquática, como peixes que precisam migrar.</li>
-          <li><strong>Mudanças no clima local:</strong> o grande espelho d’água pode influenciar temperatura e umidade da região.</li>
-          <li><strong>Emissão de gases de efeito estufa:</strong> matéria orgânica submersa emite metano, um gás poluente.</li>
+          <li>**Alagamento de grandes áreas:** causa perda de florestas, terras agricultáveis e habitats naturais.</li>
+          <li>**Deslocamento de populações ribeirinhas e indígenas:** comunidades inteiras precisam ser realocadas.</li>
+          <li>**Alteração no curso natural dos rios:** afeta a fauna aquática, como peixes que precisam migrar.</li>
+          <li>**Mudanças no clima local:** o grande espelho d’água pode influenciar temperatura e umidade da região.</li>
+          <li>**Emissão de gases de efeito estufa:** matéria orgânica submersa emite metano, um gás poluente.</li>
           </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/ygb0tef.png')">
@@ -765,11 +776,11 @@
       <div class="section-content">
         <h2>Vantagens das Usinas Hidrelétricas</h2>
         <ul>
-          <li><strong>Fonte de energia renovável:</strong> usa a força da água, que é um recurso natural e inesgotável.</li>
-          <li><strong>Baixa emissão de poluentes:</strong> comparada a usinas termoelétricas, é muito mais limpa.</li>
-          <li><strong>Alta eficiência energética:</strong> gera grande quantidade de energia com custo operacional baixo.</li>
-          <li><strong>Ajuda no controle de cheias:</strong> algumas barragens regulam o nível dos rios.</li>
-          <li><strong>Estímulo econômico regional:</strong> gera empregos e desenvolvimento de infraestrutura.</li>
+          <li>**Fonte de energia renovável:** usa a força da água, que é um recurso natural e inesgotável.</li>
+          <li>**Baixa emissão de poluentes:** comparada a usinas termoelétricas, é muito mais limpa.</li>
+          <li>**Alta eficiência energética:** gera grande quantidade de energia com custo operacional baixo.</li>
+          <li>**Ajuda no controle de cheias:** algumas barragens regulam o nível dos rios.</li>
+          <li>**Estímulo econômico regional:** gera empregos e desenvolvimento de infraestrutura.</li>
         </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/U5VpWkw.png')">
@@ -782,11 +793,11 @@
       <div class="section-content">
         <h2>Desvantagens das Usinas Hidrelétricas</h2>
         <ul>
-          <li><strong>Alto custo de construção:</strong> demanda grandes investimentos e muitos anos para ficar pronta.</li>
-          <li><strong>Impactos ambientais severos:</strong> destruição de ecossistemas e perda de biodiversidade.</li>
-          <li><strong>Dependência do clima:</strong> em períodos de seca, a geração de energia é reduzida.</li>
-          <li><strong>Deslocamento de pessoas:</strong> comunidades inteiras podem ser removidas de suas terras.</li>
-          <li><strong>Risco de acidentes:</strong> falhas em barragens podem causar tragédias.</li>
+          <li>**Alto custo de construção:** demanda grandes investimentos e muitos anos para ficar pronta.</li>
+          <li>**Impactos ambientais severos:** destruição de ecossistemas e perda de biodiversidade.</li>
+          <li>**Dependência do clima:** em períodos de seca, a geração de energia é reduzida.</li>
+          <li>**Deslocamento de pessoas:** comunidades inteiras podem ser removidas de suas terras.</li>
+          <li>**Risco de acidentes:** falhas em barragens podem causar tragédias.</li>
         </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://imgur.com/HRI90HQ.png')">
@@ -799,14 +810,14 @@
       <div class="section-content">
         <h2>Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado)</h2>
         <h3>História e Construção</h3>
-        <p>A construção da usina teve início em <strong>1º de julho de 1998</strong> e foi concluída em <strong>2002</strong>. Foi o primeiro grande empreendimento hidrelétrico no Tocantins e marcou a entrada do setor privado na construção de usinas no Brasil após a reestruturação do setor elétrico nos anos 1990.</p>
+        <p>A construção da usina teve início em **1º de julho de 1998** e foi concluída em **2002**. Foi o primeiro grande empreendimento hidrelétrico no Tocantins e marcou a entrada do setor privado na construção de usinas no Brasil após a reestruturação do setor elétrico nos anos 1990.</p>
         <h3>Localização</h3>
-        <p>Situada no <strong>Rio Tocantins</strong>, entre os municípios de <strong>Miracema do Tocantins</strong> e <strong>Lajeado</strong>, a usina está a aproximadamente <strong>54 km de Palmas</strong>, capital do Tocantins. O reservatório formado pela barragem abrange os municípios de <strong>Miracema do Tocantins</strong>, <strong>Lajeado</strong>, <strong>Palmas</strong>, <strong>Porto Nacional</strong>, <strong>Brejinho de Nazaré</strong> e <strong>Ipueiras</strong>.</p>
+        <p>Situada no **Rio Tocantins**, entre os municípios de **Miracema do Tocantins** e **Lajeado**, a usina está a aproximadamente **54 km de Palmas**, capital do Tocantins. O reservatório formado pela barragem abrange os municípios de **Miracema do Tocantins**, **Lajeado**, **Palmas**, **Porto Nacional**, **Brejinho de Nazaré** e **Ipueiras**.</p>
         <h3>Capacidade de Geração</h3>
         <ul>
-          <li><strong>Potência instalada:</strong> 902,5 MW</li>
-          <li><strong>Número de turbinas:</strong> 6 unidades geradoras com turbinas Kaplan</li>
-          <li><strong>Operadora:</strong> Investco S.A., composta por EDP South America (73%), CEB (20%) e CPFL (7%)</li>
+          <li>**Potência instalada:** 902,5 MW</li>
+          <li>**Número de turbinas:** 6 unidades geradoras com turbinas Kaplan</li>
+          <li>**Operadora:** Investco S.A., composta por EDP South America (73%), CEB (20%) e CPFL (7%)</li>
         </ul>
         <h3>Economia Local</h3>
         <p>Durante a construção, houve geração de empregos e desenvolvimento de infraestrutura. No entanto, após a conclusão, algumas atividades econômicas tradicionais, como a pesca artesanal e o turismo em praias naturais, foram impactadas negativamente.</p>
@@ -845,7 +856,7 @@
       <div class="modal-content-quem-somos-nos">
           <span class="close-button-quem-somos-nos" onclick="closeQuemSomosNosModal()">&times;</span>
           <h1>Nosso Projeto: Rio de Energia</h1>
-          <p>Este site foi desenvolvido como parte integrante da <strong>Amostra Científica da Escola Tiradentes em Palmas, TO</strong>. Nosso objetivo é explorar o tema da Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado), destacando sua importância, impactos e curiosidades.</p>
+          <p>Este site foi desenvolvido como parte integrante da **Amostra Científica da Escola Tiradentes em Palmas, TO**. Nosso objetivo é explorar o tema da Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado), destacando sua importância, impactos e curiosidades.</p>
           <p>Agradecemos a todos que nos apoiaram neste processo de pesquisa e criação.</p>
 
           <div class="team-section-modal">
@@ -868,8 +879,8 @@
                       <p>Pesquisador e Designer</p>
                   </div>
               </div>
-              <p>Turma: <strong>23:08</strong></p>
-              <p>Escola: <strong>Centro de Ensino Médio Tiradentes Palmas - TO</strong></p>
+              <p>Turma: **23:08**</p>
+              <p>Escola: **Centro de Ensino Médio Tiradentes Palmas - TO**</p>
           </div>
       </div>
   </div>
