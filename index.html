@@ -301,6 +301,7 @@
       margin-top: 40px;
     }
 
+    /* Estilos para Celular (Media Query) */
     @media (max-width: 768px) {
       .hero h1 {
         font-size: 2em;
@@ -323,13 +324,35 @@
         right: 10px;
       }
 
+      /* Ajustes para o menu de navegação em telas pequenas */
+      .navbar {
+          padding: 10px 0; /* Diminui o padding vertical do navbar */
+      }
       .navbar ul {
           flex-direction: column;
           align-items: center;
+          /* Adiciona um max-height e overflow para torná-lo 'rolável' se ficar muito longo */
+          max-height: 70vh; /* Ocupa no máximo 70% da altura da viewport */
+          overflow-y: auto; /* Adiciona scroll se o conteúdo exceder o max-height */
       }
       .navbar ul li {
-          margin: 10px 0;
+          margin: 5px 0; /* Diminui o margin vertical entre os itens do menu */
       }
+      .navbar ul li a {
+          padding: 8px 10px; /* Diminui o padding dos links */
+          font-size: 0.95em; /* Reduz ligeiramente o tamanho da fonte */
+      }
+      .navbar ul li.dropdown .dropdown-content {
+          position: static; /* Muda para estático para o dropdown aparecer no fluxo normal */
+          width: 100%; /* Ocupa a largura total do pai */
+          box-shadow: none; /* Remove a sombra extra */
+          border-radius: 0;
+      }
+      .navbar ul li.dropdown .dropdown-content a {
+          padding: 8px 20px; /* Ajusta padding para os itens do dropdown */
+          font-size: 0.9em; /* Reduz ligeiramente a fonte dos itens do dropdown */
+      }
+
 
       section {
         flex-direction: column;
