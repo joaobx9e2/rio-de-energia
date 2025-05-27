@@ -116,18 +116,19 @@
       opacity: 1;
     }
 
+    /* Navbar para Desktop (mantém a mesma aparência) */
     .navbar {
         position: sticky;
         top: 0;
         width: 100%;
-        background-color: #0d47a1; /* Azul escuro */
+        background-color: #0d47a1;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        z-index: 1000; /* Para ficar acima de tudo */
+        z-index: 1000;
         padding: 15px 0;
         text-align: center;
     }
 
-    .navbar ul {
+    .navbar-desktop ul {
         list-style: none;
         padding: 0;
         margin: 0;
@@ -136,45 +137,50 @@
         flex-wrap: wrap;
     }
 
-    .navbar ul li {
+    .navbar-desktop ul li {
         margin: 0 15px;
-        position: relative; /* Para posicionar o dropdown */
+        position: relative;
     }
 
-    .navbar ul li a {
+    .navbar-desktop ul li a {
         color: white;
         text-decoration: none;
         font-weight: bold;
         padding: 8px 15px;
         border-radius: 5px;
         transition: background-color 0.3s, color 0.3s;
-        display: block; /* Para o padding funcionar corretamente */
+        display: block;
     }
 
-    .navbar ul li a:hover {
-        background-color: #ff5722; /* Laranja */
+    .navbar-desktop ul li a:hover {
+        background-color: #ff5722;
         color: white;
     }
 
-    .navbar ul li.dropdown {
+    .navbar-desktop ul li.dropdown {
         cursor: pointer;
     }
 
-    .navbar ul li.dropdown .dropdown-content {
+    .navbar-desktop ul li.dropdown .dropdown-content {
         display: none;
         position: absolute;
         background-color: #0d47a1;
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
-        left: 0; /* Alinha com o item pai */
-        top: 100%; /* Abaixo do item pai */
+        left: 0;
+        top: 100%;
         border-radius: 0 0 5px 5px;
         overflow: hidden;
     }
 
-    .navbar ul li.dropdown.active .dropdown-content {
+    .navbar-desktop ul li.dropdown.active .dropdown-content {
         display: block;
+    }
+
+    /* Esconde elementos mobile em desktop */
+    .navbar-mobile {
+        display: none;
     }
 
     section {
@@ -192,7 +198,7 @@
     }
 
     .section-content {
-      flex: 1 1 60%; /* Volta a ocupar 60% quando há imagem lateral */
+      flex: 1 1 60%;
     }
 
     .section-content h2 {
@@ -202,7 +208,7 @@
     }
 
     .section-content h3 {
-        color: #1a237e; /* Azul mais escuro para subtítulos */
+        color: #1a237e;
         font-size: 1.4em;
         margin-top: 20px;
         margin-bottom: 10px;
@@ -223,13 +229,12 @@
         margin-bottom: 8px;
     }
 
-    /* Estilos para a imagem lateral das seções de conteúdo */
     .section-image {
       flex: 1 1 35%;
       text-align: right;
       position: relative;
       cursor: pointer;
-      display: block; /* Garante que a div da imagem lateral apareça */
+      display: block;
     }
 
     .section-image img {
@@ -285,7 +290,7 @@
       top: 20px;
       right: 30px;
       cursor: pointer;
-      z-index: 10000; /* Para ficar acima da imagem no modal */
+      z-index: 10000;
     }
 
     .close-btn img {
@@ -303,6 +308,98 @@
 
     /* Estilos para Celular (Media Query) */
     @media (max-width: 768px) {
+      /* Esconde o menu de desktop e mostra o de mobile */
+      .navbar-desktop {
+          display: none;
+      }
+      .navbar-mobile {
+          display: block; /* Mostra o novo navbar mobile */
+          position: sticky;
+          top: 0;
+          width: 100%;
+          background-color: #0d47a1;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+          z-index: 1000;
+      }
+
+      .mobile-top-bar {
+          display: flex;
+          justify-content: space-between; /* Ícones em lados opostos */
+          align-items: center;
+          padding: 10px 20px; /* Padding para a barra superior */
+          color: white;
+          font-weight: bold;
+      }
+
+      .hamburger-icon, .close-mobile-menu {
+          font-size: 1.8em; /* Tamanho do ícone */
+          cursor: pointer;
+          padding: 5px; /* Área clicável maior */
+          user-select: none; /* Evita seleção de texto */
+      }
+
+      .mobile-menu-content {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          background-color: #0d47a1; /* Mesma cor do navbar */
+          width: 100%;
+          max-height: 0; /* Começa escondido */
+          overflow: hidden; /* Esconde o conteúdo extra */
+          transition: max-height 0.4s ease-out; /* Animação suave */
+      }
+
+      .mobile-menu-content.open {
+          max-height: 500px; /* Altura suficiente para mostrar todos os itens */
+          /* Você pode ajustar este valor ou usar JavaScript para calcular a altura exata */
+      }
+
+      .mobile-menu-content li {
+          text-align: left; /* Alinha o texto dos itens */
+          border-bottom: 1px solid rgba(255,255,255,0.1); /* Separador visual */
+      }
+
+      .mobile-menu-content li:last-child {
+          border-bottom: none; /* Remove borda do último item */
+      }
+
+      .mobile-menu-content li a {
+          color: white;
+          text-decoration: none;
+          display: block; /* Para o padding funcionar na área toda */
+          padding: 15px 20px; /* Padding maior para facilitar o toque */
+          font-size: 1.1em;
+          transition: background-color 0.3s;
+      }
+
+      .mobile-menu-content li a:hover {
+          background-color: #ff5722;
+      }
+
+      /* Estilos para o dropdown dentro do menu mobile */
+      .mobile-menu-content li.dropdown .dropdown-content {
+          position: static; /* Importante para que o sub-menu apareça abaixo do pai */
+          display: block; /* Sempre visível quando o menu principal está aberto */
+          background-color: #1a237e; /* Cor um pouco diferente para o sub-menu */
+          width: 100%;
+          box-shadow: none;
+          border-radius: 0;
+          max-height: 0; /* Esconde o sub-menu por padrão */
+          overflow: hidden;
+          transition: max-height 0.3s ease-out;
+      }
+
+      .mobile-menu-content li.dropdown.active .dropdown-content {
+          max-height: 200px; /* Altura para mostrar itens do sub-menu */
+      }
+
+      .mobile-menu-content li.dropdown .dropdown-content a {
+          padding: 10px 30px; /* Mais indentado */
+          font-size: 1em;
+      }
+
+
+      /* Demais estilos responsivos existentes */
       .hero h1 {
         font-size: 2em;
         padding: 0 10px;
@@ -323,36 +420,6 @@
         top: 10px;
         right: 10px;
       }
-
-      /* Ajustes para o menu de navegação em telas pequenas */
-      .navbar {
-          padding: 10px 0; /* Diminui o padding vertical do navbar */
-      }
-      .navbar ul {
-          flex-direction: column;
-          align-items: center;
-          /* Adiciona um max-height e overflow para torná-lo 'rolável' se ficar muito longo */
-          max-height: 70vh; /* Ocupa no máximo 70% da altura da viewport */
-          overflow-y: auto; /* Adiciona scroll se o conteúdo exceder o max-height */
-      }
-      .navbar ul li {
-          margin: 5px 0; /* Diminui o margin vertical entre os itens do menu */
-      }
-      .navbar ul li a {
-          padding: 8px 10px; /* Diminui o padding dos links */
-          font-size: 0.95em; /* Reduz ligeiramente o tamanho da fonte */
-      }
-      .navbar ul li.dropdown .dropdown-content {
-          position: static; /* Muda para estático para o dropdown aparecer no fluxo normal */
-          width: 100%; /* Ocupa a largura total do pai */
-          box-shadow: none; /* Remove a sombra extra */
-          border-radius: 0;
-      }
-      .navbar ul li.dropdown .dropdown-content a {
-          padding: 8px 20px; /* Ajusta padding para os itens do dropdown */
-          font-size: 0.9em; /* Reduz ligeiramente a fonte dos itens do dropdown */
-      }
-
 
       section {
         flex-direction: column;
@@ -424,7 +491,7 @@
     <a class="button button-scroll" onclick="document.getElementById('o-que-e').scrollIntoView({ behavior: 'smooth' });">Explorar Conteúdo</a>
   </div>
 
-  <nav class="navbar">
+  <nav class="navbar navbar-desktop">
     <ul>
       <li class="dropdown" onclick="toggleDropdown(this)">
         <a href="javascript:void(0)" class="dropbtn">&#9776; </a>
@@ -442,6 +509,27 @@
       <li><a href="#curiosidades">Curiosidades</a></li>
     </ul>
   </nav>
+
+  <nav class="navbar-mobile">
+    <div class="mobile-top-bar">
+      <span class="hamburger-icon" onclick="toggleMobileMenu()">&#9776;</span> <span class="close-mobile-menu" onclick="closeMobileMenu()" style="display: none;">&times;</span> </div>
+    <ul class="mobile-menu-content" id="mobileMenu">
+      <li><a href="#o-que-e" onclick="closeMobileMenuAndScroll(this)">O que é?</a></li>
+      <li><a href="#impactos" onclick="closeMobileMenuAndScroll(this)">Impactos Ambientais</a></li>
+      <li><a href="#vantagens" onclick="closeMobileMenuAndScroll(this)">Vantagens</a></li>
+      <li><a href="#desvantagens" onclick="closeMobileMenuAndScroll(this)">Desvantagens</a></li>
+      <li><a href="#uhe-lajeado" onclick="closeMobileMenuAndScroll(this)">UHE Lajeado</a></li>
+      <li><a href="#curiosidades" onclick="closeMobileMenuAndScroll(this)">Curiosidades</a></li>
+      <li class="dropdown" onclick="toggleDropdownMobile(this)">
+        <a href="javascript:void(0)">&#9776; Opções Extras</a> <div class="dropdown-content">
+          <a href="#">Quem somos nós</a>
+          <a href="#">Script</a>
+          <a href="#">Links</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
 
   <div id="conteudo">
     <section id="o-que-e">
@@ -572,7 +660,7 @@
       document.getElementById('imageModal').style.display = 'none';
     }
 
-    // Função para scroll suave
+    // Função para scroll suave (ajustada para fechar o menu mobile se estiver aberto)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -582,20 +670,26 @@
                 return;
             }
 
+            // Fecha o menu mobile se estiver aberto
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu && mobileMenu.classList.contains('open')) {
+                closeMobileMenu();
+            }
+
             document.querySelector(targetId).scrollIntoView({
                 behavior: 'smooth'
             });
         });
     });
 
-    // Função para alternar o dropdown das "três barrinhas"
+    // --- Funções para o menu de desktop (hambúrguer normal) ---
     function toggleDropdown(element) {
         element.classList.toggle("active");
     }
 
-    // Fecha o dropdown se o usuário clicar fora dele
+    // Fecha o dropdown de desktop se o usuário clicar fora dele
     window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
+      if (!event.target.matches('.dropbtn') && !event.target.matches('.dropdown-content a')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {
           var openDropdown = dropdowns[i];
@@ -604,6 +698,52 @@
           }
         }
       }
+    }
+
+    // --- Funções para o novo menu mobile (hambúrguer off-canvas) ---
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.querySelector('.hamburger-icon');
+        const closeIcon = document.querySelector('.close-mobile-menu');
+
+        mobileMenu.classList.toggle('open');
+        if (mobileMenu.classList.contains('open')) {
+            hamburgerIcon.style.display = 'none';
+            closeIcon.style.display = 'block';
+        } else {
+            hamburgerIcon.style.display = 'block';
+            closeIcon.style.display = 'none';
+            // Garante que o sub-dropdown do mobile também feche
+            const dropdownsMobile = document.querySelectorAll('.mobile-menu-content .dropdown');
+            dropdownsMobile.forEach(dropdown => dropdown.classList.remove('active'));
+        }
+    }
+
+    function closeMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const hamburgerIcon = document.querySelector('.hamburger-icon');
+        const closeIcon = document.querySelector('.close-mobile-menu');
+
+        mobileMenu.classList.remove('open');
+        hamburgerIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+        // Garante que o sub-dropdown do mobile também feche
+        const dropdownsMobile = document.querySelectorAll('.mobile-menu-content .dropdown');
+        dropdownsMobile.forEach(dropdown => dropdown.classList.remove('active'));
+    }
+
+    // Função para fechar o menu mobile e rolar para a seção (usada nos links do menu mobile)
+    function closeMobileMenuAndScroll(element) {
+        closeMobileMenu();
+        const targetId = element.getAttribute('href');
+        if (targetId && targetId !== '#') {
+            document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // Função para alternar o dropdown dentro do menu mobile
+    function toggleDropdownMobile(element) {
+        element.classList.toggle("active");
     }
   </script>
 
