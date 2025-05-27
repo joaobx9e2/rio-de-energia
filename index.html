@@ -83,6 +83,7 @@
       flex-direction: column;
       align-items: center;
       text-decoration: none;
+      z-index: 2; /* Para ficar acima do menu */
     }
 
     .email-icon img {
@@ -115,6 +116,67 @@
       opacity: 1;
     }
 
+    .navbar {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background-color: #0d47a1; /* Azul escuro */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 1000; /* Para ficar acima de tudo */
+        padding: 15px 0;
+        text-align: center;
+    }
+
+    .navbar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .navbar ul li {
+        margin: 0 15px;
+        position: relative; /* Para posicionar o dropdown */
+    }
+
+    .navbar ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 8px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+        display: block; /* Para o padding funcionar corretamente */
+    }
+
+    .navbar ul li a:hover {
+        background-color: #ff5722; /* Laranja */
+        color: white;
+    }
+
+    .navbar ul li.dropdown {
+        cursor: pointer;
+    }
+
+    .navbar ul li.dropdown .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #0d47a1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        left: 0; /* Alinha com o item pai */
+        top: 100%; /* Abaixo do item pai */
+        border-radius: 0 0 5px 5px;
+        overflow: hidden;
+    }
+
+    .navbar ul li.dropdown.active .dropdown-content {
+        display: block;
+    }
+
     section {
       background: white;
       margin: 30px auto;
@@ -130,7 +192,7 @@
     }
 
     .section-content {
-      flex: 1 1 60%;
+      flex: 1 1 60%; /* Volta a ocupar 60% quando há imagem lateral */
     }
 
     .section-content h2 {
@@ -139,17 +201,35 @@
       margin-bottom: 15px;
     }
 
+    .section-content h3 {
+        color: #1a237e; /* Azul mais escuro para subtítulos */
+        font-size: 1.4em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
     .section-content p,
     .section-content ul {
       font-size: 1.1em;
       line-height: 1.6;
     }
 
+    .section-content ul {
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+
+    .section-content ul li {
+        margin-bottom: 8px;
+    }
+
+    /* Estilos para a imagem lateral das seções de conteúdo */
     .section-image {
       flex: 1 1 35%;
       text-align: right;
       position: relative;
       cursor: pointer;
+      display: block; /* Garante que a div da imagem lateral apareça */
     }
 
     .section-image img {
@@ -205,6 +285,7 @@
       top: 20px;
       right: 30px;
       cursor: pointer;
+      z-index: 10000; /* Para ficar acima da imagem no modal */
     }
 
     .close-btn img {
@@ -242,6 +323,14 @@
         right: 10px;
       }
 
+      .navbar ul {
+          flex-direction: column;
+          align-items: center;
+      }
+      .navbar ul li {
+          margin: 10px 0;
+      }
+
       section {
         flex-direction: column;
         align-items: center;
@@ -257,6 +346,9 @@
       .section-content h2 {
         font-size: 1.6em;
       }
+      .section-content h3 {
+        font-size: 1.2em;
+      }
 
       .section-content p,
       .section-content ul {
@@ -267,6 +359,7 @@
         flex: 1 1 100%;
         text-align: center;
         margin-top: 20px;
+        display: block;
       }
 
       .section-image img {
@@ -304,15 +397,35 @@
     </a>
 
     <h1>Energia no Coração do Tocantins</h1>
-    <p>Descubra o poder da Usina Hidrelétrica Luis Eduardo Magalhães</p>
-    <a class="button button-scroll" onclick="document.getElementById('conteudo').scrollIntoView({ behavior: 'smooth' });">Explorar Conteúdo</a>
+    <p>Descubra o poder da Usina Hidrelétrica Luís Eduardo Magalhães</p>
+    <a class="button button-scroll" onclick="document.getElementById('o-que-e').scrollIntoView({ behavior: 'smooth' });">Explorar Conteúdo</a>
   </div>
 
+  <nav class="navbar">
+    <ul>
+      <li class="dropdown" onclick="toggleDropdown(this)">
+        <a href="javascript:void(0)" class="dropbtn">&#9776; </a>
+        <div class="dropdown-content">
+          <a href="#">Quem somos nós</a>
+          <a href="#">Script</a>
+          <a href="#">Links</a>
+        </div>
+      </li>
+      <li><a href="#o-que-e">O que é?</a></li>
+      <li><a href="#impactos">Impactos Ambientais</a></li>
+      <li><a href="#vantagens">Vantagens</a></li>
+      <li><a href="#desvantagens">Desvantagens</a></li>
+      <li><a href="#uhe-lajeado">UHE Lajeado</a></li>
+      <li><a href="#curiosidades">Curiosidades</a></li>
+    </ul>
+  </nav>
+
   <div id="conteudo">
-    <section>
+    <section id="o-que-e">
       <div class="section-content">
         <h2>O que é uma Usina Hidrelétrica?</h2>
-        <p>Uma usina hidrelétrica é uma instalação que transforma a energia da água em movimento em energia elétrica, por meio de turbinas e geradores.</p>
+        <p>Uma usina hidrelétrica é uma instalação que gera energia elétrica a partir da força da água em movimento. Ela funciona aproveitando a correnteza dos rios: a água passa por turbinas gigantes, fazendo-as girar, e esse movimento gera eletricidade através de geradores.</p>
+        <p>É uma das fontes de energia mais utilizadas no Brasil, por ser <strong>renovável</strong>, <strong>limpa</strong> e ideal para o nosso país, que tem muitos rios com grande volume de água.</p>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/RlRKYq1.png')">
         <img src="https://i.imgur.com/RlRKYq1.png" alt="Usina" />
@@ -320,14 +433,15 @@
       </div>
     </section>
 
-    <section>
+    <section id="impactos">
       <div class="section-content">
-        <h2>Impactos Ambientais</h2>
+        <h2>Impactos Ambientais das Usinas Hidrelétricas</h2>
         <ul>
-          <li>Alagamento de áreas naturais e urbanas</li>
-          <li>Deslocamento de comunidades</li>
-          <li>Alterações no ecossistema</li>
-          <li>Emissão de gases na decomposição da biomassa</li>
+          <li><strong>Alagamento de grandes áreas:</strong> causa perda de florestas, terras agricultáveis e habitats naturais.</li>
+          <li><strong>Deslocamento de populações ribeirinhas e indígenas:</strong> comunidades inteiras precisam ser realocadas.</li>
+          <li><strong>Alteração no curso natural dos rios:</strong> afeta a fauna aquática, como peixes que precisam migrar.</li>
+          <li><strong>Mudanças no clima local:</strong> o grande espelho d’água pode influenciar temperatura e umidade da região.</li>
+          <li><strong>Emissão de gases de efeito estufa:</strong> matéria orgânica submersa emite metano, um gás poluente.</li>
         </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/ygb0tef.png')">
@@ -336,14 +450,15 @@
       </div>
     </section>
 
-    <section>
+    <section id="vantagens">
       <div class="section-content">
-        <h2>Vantagens</h2>
+        <h2>Vantagens das Usinas Hidrelétricas</h2>
         <ul>
-          <li>Energia limpa e renovável</li>
-          <li>Baixa emissão de gases poluentes</li>
-          <li>Grande capacidade de geração</li>
-          <li>Vida útil prolongada</li>
+          <li><strong>Fonte de energia renovável:</strong> usa a força da água, que é um recurso natural e inesgotável.</li>
+          <li><strong>Baixa emissão de poluentes:</strong> comparada a usinas termoelétricas, é muito mais limpa.</li>
+          <li><strong>Alta eficiência energética:</strong> gera grande quantidade de energia com custo operacional baixo.</li>
+          <li><strong>Ajuda no controle de cheias:</strong> algumas barragens regulam o nível dos rios.</li>
+          <li><strong>Estímulo econômico regional:</strong> gera empregos e desenvolvimento de infraestrutura.</li>
         </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/U5VpWkw.png')">
@@ -352,31 +467,63 @@
       </div>
     </section>
 
-    <section>
+    <section id="desvantagens">
       <div class="section-content">
-        <h2>Funcionamento da Usina</h2>
-        <p>A água represada é liberada para girar turbinas conectadas a geradores, convertendo a energia cinética em eletricidade que é transmitida por linhas de alta tensão.</p>
+        <h2>Desvantagens das Usinas Hidrelétricas</h2>
+        <ul>
+          <li><strong>Alto custo de construção:</strong> demanda grandes investimentos e muitos anos para ficar pronta.</li>
+          <li><strong>Impactos ambientais severos:</strong> destruição de ecossistemas e perda de biodiversidade.</li>
+          <li><strong>Dependência do clima:</strong> em períodos de seca, a geração de energia é reduzida.</li>
+          <li><strong>Deslocamento de pessoas:</strong> comunidades inteiras podem ser removidas de suas terras.</li>
+          <li><strong>Risco de acidentes:</strong> falhas em barragens podem causar tragédias.</li>
+        </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://imgur.com/HRI90HQ.png')">
-        <img src="https://imgur.com/HRI90HQ.png" alt="Funcionamento" />
+        <img src="https://imgur.com/HRI90HQ.png" alt="Desvantagens" />
         <div class="overlay-text">Expandir</div>
       </div>
     </section>
 
-    <section>
+    <section id="uhe-lajeado">
       <div class="section-content">
-        <h2>A Usina de Lajeado</h2>
-        <p>Inaugurada em 2001, a UHE Luis Eduardo Magalhães está localizada no rio Tocantins e tem capacidade instalada de 902,5 MW, sendo essencial para o fornecimento de energia à região.</p>
+        <h2>Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado)</h2>
+        <h3>História e Construção</h3>
+        <p>A construção da usina teve início em <strong>1º de julho de 1998</strong> e foi concluída em <strong>2002</strong>. Foi o primeiro grande empreendimento hidrelétrico no Tocantins e marcou a entrada do setor privado na construção de usinas no Brasil após a reestruturação do setor elétrico nos anos 1990.</p>
+        <h3>Localização</h3>
+        <p>Situada no <strong>Rio Tocantins</strong>, entre os municípios de <strong>Miracema do Tocantins</strong> e <strong>Lajeado</strong>, a usina está a aproximadamente <strong>54 km de Palmas</strong>, capital do Tocantins. O reservatório formado pela barragem abrange os municípios de <strong>Miracema do Tocantins</strong>, <strong>Lajeado</strong>, <strong>Palmas</strong>, <strong>Porto Nacional</strong>, <strong>Brejinho de Nazaré</strong> e <strong>Ipueiras</strong>.</p>
+        <h3>Capacidade de Geração</h3>
+        <ul>
+          <li><strong>Potência instalada:</strong> 902,5 MW</li>
+          <li><strong>Número de turbinas:</strong> 6 unidades geradoras com turbinas Kaplan</li>
+          <li><strong>Operadora:</strong> Investco S.A., composta por EDP South America (73%), CEB (20%) e CPFL (7%)</li>
+        </ul>
+        <h3>Economia Local</h3>
+        <p>Durante a construção, houve geração de empregos e desenvolvimento de infraestrutura. No entanto, após a conclusão, algumas atividades econômicas tradicionais, como a pesca artesanal e o turismo em praias naturais, foram impactadas negativamente.</p>
+        <h3>Turismo e Lazer</h3>
+        <p>O lago formado pela usina tornou-se um atrativo turístico, oferecendo opções de lazer como passeios de barco e pesca esportiva. A orla de Palmas, por exemplo, foi revitalizada para aproveitar o potencial turístico do lago.</p>
       </div>
       <div class="section-image" onclick="expandImage('https://imgur.com/f8je7SF.png')">
         <img src="https://imgur.com/f8je7SF.png" alt="Usina Lajeado" />
         <div class="overlay-text">Expandir</div>
       </div>
     </section>
+
+    <section id="curiosidades">
+        <div class="section-content">
+            <h2>Curiosidades sobre Usinas Hidrelétricas</h2>
+            <ul>
+                <li>O Brasil é um dos países que mais utilizam a energia hidrelétrica no mundo, devido à sua vasta rede de rios.</li>
+                <li>A Usina Hidrelétrica de Itaipu, na fronteira com o Paraguai, é uma das maiores do mundo em geração de energia.</li>
+                <li>Além de gerar eletricidade, muitas barragens hidrelétricas também ajudam no controle de inundações e no abastecimento de água para cidades e agricultura.</li>
+                <li>A construção de uma usina hidrelétrica é um projeto de engenharia complexo que pode levar décadas para ser concluído.</li>
+                <li>A energia hidrelétrica é considerada uma das fontes de energia mais baratas a longo prazo, após o alto investimento inicial na construção.</li>
+            </ul>
+        </div>
+        <div class="section-image" style="display: none;"></div>
+    </section>
   </div>
 
-  <!-- MODAL DE IMAGEM -->
-  <div class="image-modal" id="imageModal" onclick="closeModal()">
+  <div class="image-modal" id="imageModal">
     <span class="close-btn" onclick="closeModal(event)">
       <img src="https://i.imgur.com/pC2yYB6.png" alt="Fechar" />
     </span>
@@ -388,6 +535,7 @@
   </footer>
 
   <script>
+    // Função para expandir imagem no modal
     function expandImage(src) {
       const modal = document.getElementById('imageModal');
       const modalImg = document.getElementById('modalImage');
@@ -395,9 +543,44 @@
       modalImg.src = src;
     }
 
+    // Função para fechar o modal da imagem
     function closeModal(event) {
       if (event) event.stopPropagation();
       document.getElementById('imageModal').style.display = 'none';
+    }
+
+    // Função para scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') { // Ignora links do dropdown sem destino específico
+                return;
+            }
+
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Função para alternar o dropdown das "três barrinhas"
+    function toggleDropdown(element) {
+        element.classList.toggle("active");
+    }
+
+    // Fecha o dropdown se o usuário clicar fora dele
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.parentElement.classList.contains('active')) {
+            openDropdown.parentElement.classList.remove('active');
+          }
+        }
+      }
     }
   </script>
 
