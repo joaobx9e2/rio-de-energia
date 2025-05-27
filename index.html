@@ -309,8 +309,8 @@
       margin-top: 40px;
     }
 
-    /* Estilos do Modal Quem Somos Nós */
-    .modal-quem-somos-nos {
+    /* Estilos dos Modais (Quem Somos Nós, Script e Links) */
+    .modal {
         display: none; /* Escondido por padrão */
         position: fixed; /* Fixado na tela */
         z-index: 2000; /* Acima de tudo */
@@ -320,29 +320,26 @@
         height: 100%; /* Altura total */
         background: url('https://imgur.com/6GbvOgy.png') no-repeat center center fixed; /* Fundo da escola */
         background-size: cover;
-        /* display: flex;  Esta propriedade será ativada pelo JS quando o modal for mostrado */
         justify-content: center;
         align-items: center;
-        /* Adicionado para celular para evitar o corte superior */
         overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
         -webkit-overflow-scrolling: touch; /* Suaviza o scroll em iOS */
         padding: 20px 0; /* Padding vertical para garantir espaço */
     }
 
     /* Adiciona um overlay escuro sobre a imagem de fundo do modal */
-    .modal-quem-somos-nos::before {
+    .modal::before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        /* Ajustado: Azul escuro semi-transparente, com opacidade reduzida */
-        background: rgba(13, 71, 161, 0.6); /* Era 0.8, agora 0.6 para aparecer mais a imagem */
+        background: rgba(13, 71, 161, 0.5); /* Azul escuro semi-transparente, opacidade 0.5 */
         z-index: -1; /* Fica atrás do conteúdo, mas à frente do background */
     }
 
-    .modal-content-quem-somos-nos {
+    .modal-content {
         position: relative;
         background-color: rgba(255, 255, 255, 0.95); /* Fundo branco semi-transparente */
         margin: auto; /* Centraliza no eixo Y em telas maiores */
@@ -355,7 +352,6 @@
         animation: fadeInModal 0.5s ease-out; /* Animação de entrada */
         transform: scale(0.95); /* Começa um pouco menor */
         transition: transform 0.3s ease-out; /* Suaviza a transição */
-        /* Ajustado para celular */
         width: 90%; /* Ocupa 90% da largura em telas menores */
         max-height: 90vh; /* Limita a altura para caber na tela do celular */
         overflow-y: auto; /* Permite scroll interno se o conteúdo exceder max-height */
@@ -367,24 +363,68 @@
         to { opacity: 1; transform: scale(1); }
     }
 
-    .modal-quem-somos-nos.show {
+    .modal.show {
         display: flex; /* Mostra o modal */
     }
 
-    .modal-content-quem-somos-nos h1 {
+    .modal-content h1 {
         color: #0d47a1;
         font-size: 2.5em;
         margin-bottom: 15px;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
     }
 
-    .modal-content-quem-somos-nos p {
+    .modal-content h2 { /* Para os subtítulos dos modais */
+        color: #1a237e;
+        font-size: 1.8em;
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    .modal-content p {
         font-size: 1.1em;
         line-height: 1.7;
         margin-bottom: 15px;
     }
 
-    .close-button-quem-somos-nos {
+    .modal-content ul {
+        list-style: none; /* Remove bullets padrão */
+        padding: 0;
+        margin: 0;
+        text-align: left; /* Alinha os itens da lista à esquerda */
+    }
+
+    .modal-content ul li {
+        margin-bottom: 15px;
+        background-color: #e3f2fd; /* Fundo para cada item do link */
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        word-wrap: break-word; /* Quebra palavras longas */
+    }
+
+    .modal-content ul li a {
+        color: #0d47a1;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1em;
+        display: block; /* Ocupa a largura total do li */
+        margin-bottom: 5px;
+    }
+
+    .modal-content ul li a:hover {
+        text-decoration: underline;
+    }
+
+    .modal-content ul li p { /* Descrição do link */
+        font-size: 0.95em;
+        color: #555;
+        margin-top: 5px;
+        margin-bottom: 0; /* Remove margem inferior padrão de parágrafo */
+    }
+
+
+    .close-button {
         color: #aaa;
         float: right;
         font-size: 40px;
@@ -396,8 +436,8 @@
         transition: color 0.3s;
     }
 
-    .close-button-quem-somos-nos:hover,
-    .close-button-quem-somos-nos:focus {
+    .close-button:hover,
+    .close-button:focus {
         color: #ff5722;
         text-decoration: none;
         cursor: pointer;
@@ -647,8 +687,8 @@
         width: 32px;
       }
 
-      /* Responsividade para o modal Quem Somos Nós */
-      .modal-content-quem-somos-nos {
+      /* Responsividade para os modais */
+      .modal-content {
           margin: 20px auto; /* Adicionado auto para centralizar */
           padding: 25px;
           max-width: 90%;
@@ -656,12 +696,20 @@
           height: auto; /* Altura automática */
       }
 
-      .modal-content-quem-somos-nos h1 {
+      .modal-content h1 {
           font-size: 2em;
       }
 
-      .modal-content-quem-somos-nos p {
+      .modal-content p {
           font-size: 1em;
+      }
+
+      .modal-content h2 {
+          font-size: 1.4em;
+      }
+
+      .modal-content ul li p {
+        font-size: 0.9em;
       }
 
       .team-members-modal {
@@ -679,7 +727,7 @@
           height: 100px;
       }
 
-      .close-button-quem-somos-nos {
+      .close-button {
           font-size: 30px;
           top: 5px;
           right: 15px;
@@ -706,9 +754,7 @@
         <a href="javascript:void(0)" class="dropbtn">&#9776; </a>
         <div class="dropdown-content">
           <a href="javascript:void(0)" onclick="openQuemSomosNosModal()">Quem somos nós</a>
-          <a href="#">Script</a>
-          <a href="#">Links</a>
-        </div>
+          <a href="javascript:void(0)" onclick="openScriptModal()">Script</a> <a href="javascript:void(0)" onclick="openLinksModal()">Links</a> </div>
       </li>
       <li><a href="#o-que-e">O que é?</a></li>
       <li><a href="#impactos">Impactos Ambientais</a></li>
@@ -736,9 +782,7 @@
 
     <ul class="mobile-extra-menu-content" id="mobileExtraMenu">
       <li><a href="javascript:void(0)" onclick="openQuemSomosNosModal()">Quem somos nós</a></li>
-      <li><a href="#" onclick="closeAllMobileMenus()">Script</a></li>
-      <li><a href="#" onclick="closeAllMobileMenus()">Links</a></li>
-    </ul>
+      <li><a href="javascript:void(0)" onclick="openScriptModal()">Script</a> <li><a href="javascript:void(0)" onclick="openLinksModal()">Links</a></li> </ul>
   </div>
 
 
@@ -747,7 +791,7 @@
       <div class="section-content">
         <h2>O que é uma Usina Hidrelétrica?</h2>
         <p>Uma usina hidrelétrica é uma instalação que gera energia elétrica a partir da força da água em movimento. Ela funciona aproveitando a correnteza dos rios: a água passa por turbinas gigantes, fazendo-as girar, e esse movimento gera eletricidade através de geradores.</p>
-        <p>É uma das fontes de energia mais utilizadas no Brasil, por ser **renovável**, **limpa** e ideal para o nosso país, que tem muitos rios com grande volume de água.</p>
+        <p>É uma das fontes de energia mais utilizadas no Brasil, por ser <strong>renovável</strong>, <strong>limpa</strong> e ideal para o nosso país, que tem muitos rios com grande volume de água.</p>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/RlRKYq1.png')">
         <img src="https://i.imgur.com/RlRKYq1.png" alt="Usina" />
@@ -759,11 +803,11 @@
       <div class="section-content">
         <h2>Impactos Ambientais das Usinas Hidrelétricas</h2>
         <ul>
-          <li>**Alagamento de grandes áreas:** causa perda de florestas, terras agricultáveis e habitats naturais.</li>
-          <li>**Deslocamento de populações ribeirinhas e indígenas:** comunidades inteiras precisam ser realocadas.</li>
-          <li>**Alteração no curso natural dos rios:** afeta a fauna aquática, como peixes que precisam migrar.</li>
-          <li>**Mudanças no clima local:** o grande espelho d’água pode influenciar temperatura e umidade da região.</li>
-          <li>**Emissão de gases de efeito estufa:** matéria orgânica submersa emite metano, um gás poluente.</li>
+          <li><strong>Alagamento de grandes áreas:</strong> causa perda de florestas, terras agricultáveis e habitats naturais.</li>
+          <li><strong>Deslocamento de populações ribeirinhas e indígenas:</strong> comunidades inteiras precisam ser realocadas.</li>
+          <li><strong>Alteração no curso natural dos rios:</strong> afeta a fauna aquática, como peixes que precisam migrar.</li>
+          <li><strong>Mudanças no clima local:</strong> o grande espelho d’água pode influenciar temperatura e umidade da região.</li>
+          <li><strong>Emissão de gases de efeito estufa:</strong> matéria orgânica submersa emite metano, um gás poluente.</li>
           </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/ygb0tef.png')">
@@ -776,11 +820,11 @@
       <div class="section-content">
         <h2>Vantagens das Usinas Hidrelétricas</h2>
         <ul>
-          <li>**Fonte de energia renovável:** usa a força da água, que é um recurso natural e inesgotável.</li>
-          <li>**Baixa emissão de poluentes:** comparada a usinas termoelétricas, é muito mais limpa.</li>
-          <li>**Alta eficiência energética:** gera grande quantidade de energia com custo operacional baixo.</li>
-          <li>**Ajuda no controle de cheias:** algumas barragens regulam o nível dos rios.</li>
-          <li>**Estímulo econômico regional:** gera empregos e desenvolvimento de infraestrutura.</li>
+          <li><strong>Fonte de energia renovável:</strong> usa a força da água, que é um recurso natural e inesgotável.</li>
+          <li><strong>Baixa emissão de poluentes:</strong> comparada a usinas termoelétricas, é muito mais limpa.</li>
+          <li><strong>Alta eficiência energética:</strong> gera grande quantidade de energia com custo operacional baixo.</li>
+          <li><strong>Ajuda no controle de cheias:</strong> algumas barragens regulam o nível dos rios.</li>
+          <li><strong>Estímulo econômico regional:</strong> gera empregos e desenvolvimento de infraestrutura.</li>
         </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/U5VpWkw.png')">
@@ -793,11 +837,11 @@
       <div class="section-content">
         <h2>Desvantagens das Usinas Hidrelétricas</h2>
         <ul>
-          <li>**Alto custo de construção:** demanda grandes investimentos e muitos anos para ficar pronta.</li>
-          <li>**Impactos ambientais severos:** destruição de ecossistemas e perda de biodiversidade.</li>
-          <li>**Dependência do clima:** em períodos de seca, a geração de energia é reduzida.</li>
-          <li>**Deslocamento de pessoas:** comunidades inteiras podem ser removidas de suas terras.</li>
-          <li>**Risco de acidentes:** falhas em barragens podem causar tragédias.</li>
+          <li><strong>Alto custo de construção:</strong> demanda grandes investimentos e muitos anos para ficar pronta.</li>
+          <li><strong>Impactos ambientais severos:</strong> destruição de ecossistemas e perda de biodiversidade.</li>
+          <li><strong>Dependência do clima:</strong> em períodos de seca, a geração de energia é reduzida.</li>
+          <li><strong>Deslocamento de pessoas:</strong> comunidades inteiras podem ser removidas de suas terras.</li>
+          <li><strong>Risco de acidentes:</strong> falhas em barragens podem causar tragédias.</li>
         </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://imgur.com/HRI90HQ.png')">
@@ -810,14 +854,14 @@
       <div class="section-content">
         <h2>Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado)</h2>
         <h3>História e Construção</h3>
-        <p>A construção da usina teve início em **1º de julho de 1998** e foi concluída em **2002**. Foi o primeiro grande empreendimento hidrelétrico no Tocantins e marcou a entrada do setor privado na construção de usinas no Brasil após a reestruturação do setor elétrico nos anos 1990.</p>
+        <p>A construção da usina teve início em <strong>1º de julho de 1998</strong> e foi concluída em <strong>2002</strong>. Foi o primeiro grande empreendimento hidrelétrico no Tocantins e marcou a entrada do setor privado na construção de usinas no Brasil após a reestruturação do setor elétrico nos anos 1990.</p>
         <h3>Localização</h3>
-        <p>Situada no **Rio Tocantins**, entre os municípios de **Miracema do Tocantins** e **Lajeado**, a usina está a aproximadamente **54 km de Palmas**, capital do Tocantins. O reservatório formado pela barragem abrange os municípios de **Miracema do Tocantins**, **Lajeado**, **Palmas**, **Porto Nacional**, **Brejinho de Nazaré** e **Ipueiras**.</p>
+        <p>Situada no <strong>Rio Tocantins</strong>, entre os municípios de <strong>Miracema do Tocantins</strong> e <strong>Lajeado</strong>, a usina está a aproximadamente <strong>54 km de Palmas</strong>, capital do Tocantins. O reservatório formado pela barragem abrange os municípios de <strong>Miracema do Tocantins</strong>, <strong>Lajeado</strong>, <strong>Palmas</strong>, <strong>Porto Nacional</strong>, <strong>Brejinho de Nazaré</strong> e <strong>Ipueiras</strong>.</p>
         <h3>Capacidade de Geração</h3>
         <ul>
-          <li>**Potência instalada:** 902,5 MW</li>
-          <li>**Número de turbinas:** 6 unidades geradoras com turbinas Kaplan</li>
-          <li>**Operadora:** Investco S.A., composta por EDP South America (73%), CEB (20%) e CPFL (7%)</li>
+          <li><strong>Potência instalada:</strong> 902,5 MW</li>
+          <li><strong>Número de turbinas:</strong> 6 unidades geradoras com turbinas Kaplan</li>
+          <li><strong>Operadora:</strong> Investco S.A., composta por EDP South America (73%), CEB (20%) e CPFL (7%)</li>
         </ul>
         <h3>Economia Local</h3>
         <p>Durante a construção, houve geração de empregos e desenvolvimento de infraestrutura. No entanto, após a conclusão, algumas atividades econômicas tradicionais, como a pesca artesanal e o turismo em praias naturais, foram impactadas negativamente.</p>
@@ -852,11 +896,11 @@
     <img id="modalImage" src="" alt="Imagem Expandida" />
   </div>
 
-  <div id="quemSomosNosModal" class="modal-quem-somos-nos">
-      <div class="modal-content-quem-somos-nos">
-          <span class="close-button-quem-somos-nos" onclick="closeQuemSomosNosModal()">&times;</span>
+  <div id="quemSomosNosModal" class="modal">
+      <div class="modal-content">
+          <span class="close-button" onclick="closeQuemSomosNosModal()">&times;</span>
           <h1>Nosso Projeto: Rio de Energia</h1>
-          <p>Este site foi desenvolvido como parte integrante da **Amostra Científica da Escola Tiradentes em Palmas, TO**. Nosso objetivo é explorar o tema da Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado), destacando sua importância, impactos e curiosidades.</p>
+          <p>Este site foi desenvolvido como parte integrante da <strong>Amostra Científica da Escola Tiradentes em Palmas, TO</strong>. Nosso objetivo é explorar o tema da Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado), destacando sua importância, impactos e curiosidades.</p>
           <p>Agradecemos a todos que nos apoiaram neste processo de pesquisa e criação.</p>
 
           <div class="team-section-modal">
@@ -879,9 +923,57 @@
                       <p>Pesquisador e Designer</p>
                   </div>
               </div>
-              <p>Turma: **23:08**</p>
-              <p>Escola: **Centro de Ensino Médio Tiradentes Palmas - TO**</p>
+              <p>Turma: <strong>23:08</strong></p>
+              <p>Escola: <strong>Centro de Ensino Médio Tiradentes Palmas - TO</strong></p>
           </div>
+      </div>
+  </div>
+
+  <div id="scriptModal" class="modal">
+      <div class="modal-content">
+          <span class="close-button" onclick="closeScriptModal()">&times;</span>
+          <h1>Como o Site Foi Construído</h1>
+          <p>Este site foi cuidadosamente desenvolvido para apresentar informações sobre a Usina Hidrelétrica Luís Eduardo Magalhães. A estrutura, o design e o conteúdo foram produzidos e estruturados por <strong>João Emanoel</strong> e <strong>Gustavo Brito</strong>, utilizando as seguintes linguagens e tecnologias:</p>
+          <ul>
+              <li><strong>HTML (HyperText Markup Language):</strong> Usado para estruturar o conteúdo do site, definindo os títulos, parágrafos, listas e as diferentes seções.</li>
+              <li><strong>CSS (Cascading Style Sheets):</strong> Responsável por toda a parte visual e de estilo do site, incluindo cores, fontes, layouts responsivos para celular e desktop, animações e o posicionamento de elementos.</li>
+              <li><strong>JavaScript:</strong> Implementado para adicionar interatividade ao site, como a funcionalidade de expandir imagens ao clicar, o comportamento dos menus de navegação (tanto para desktop quanto para mobile) e a abertura/fechamento dos modais.</li>
+          </ul>
+          <p>Foi um trabalho detalhado para garantir que o site fosse não apenas funcional, mas também visualmente agradável e fácil de navegar em qualquer dispositivo.</p>
+      </div>
+  </div>
+
+  <div id="linksModal" class="modal">
+      <div class="modal-content">
+          <span class="close-button" onclick="closeLinksModal()">&times;</span>
+          <h1>Fontes de Pesquisa</h1>
+          <p>Para a construção deste site, foram consultadas diversas fontes confiáveis para garantir a precisão e a qualidade das informações apresentadas. Abaixo, você encontra os links de referência:</p>
+          <ul>
+              <li>
+                  <a href="https://www.investco.com.br/pt-br/a-usina/uhe-lajeado" target="_blank">UHE Lajeado - Investco</a>
+                  <p>Informações detalhadas sobre a Usina Hidrelétrica Luís Eduardo Magalhães, fornecidas pela empresa responsável pela sua operação.</p>
+              </li>
+              <li>
+                  <a href="https://www.enelgreenpower.com/pt/learning-hub/energias-renoveveis/energia-hidraulica/usina-hidreletrica" target="_blank">Da água à energia renovável: funcionamento e tipos de usinas hidrelétricas - Enel Green Power</a>
+                  <p>Explicação sobre o funcionamento e os tipos de usinas hidrelétricas, com foco na energia renovável.</p>
+              </li>
+              <li>
+                  <a href="https://brasilescola.uol.com.br/fisica/o-principio-funcionamento-uma-usina-hidreletrica.htm" target="_blank">Usina hidrelétrica: o que é, como funciona, tipos - Brasil Escola</a>
+                  <p>Conteúdo abrangente sobre o que é uma usina hidrelétrica, seu funcionamento, tipos, vantagens e desvantagens.</p>
+              </li>
+              <li>
+                  <a href="https://eletrobras.com/pt/Paginas/Home.aspx" target="_blank">Eletrobras</a>
+                  <p>Site oficial da Eletrobras, a maior empresa de energia elétrica da América Latina, com informações sobre o setor elétrico brasileiro.</p>
+              </li>
+              <li>
+                  <a href="https://www.ons.org.br/" target="_blank">ONS - Operador Nacional do Sistema Elétrico</a>
+                  <p>Portal do Operador Nacional do Sistema Elétrico, responsável pela coordenação e controle da operação das instalações de geração e transmissão de energia elétrica no Brasil.</p>
+              </li>
+              <li>
+                  <a href="https://pt.wikipedia.org/wiki/Usina_hidrel%C3%A9trica" target="_blank">Usina hidrelétrica - Wikipédia</a>
+                  <p>Artigo da Wikipédia com informações gerais sobre usinas hidrelétricas, incluindo conceitos, história e impactos.</p>
+              </li>
+          </ul>
       </div>
   </div>
 
@@ -929,8 +1021,8 @@
 
     // Fecha o dropdown de desktop se o usuário clicar fora dele
     window.onclick = function(event) {
-      // Verifica se o evento não veio de um elemento dentro da barra superior mobile ou do modal "Quem Somos Nós"
-      if (!event.target.closest('.mobile-top-bar') && !event.target.closest('.modal-quem-somos-nos')) {
+      // Verifica se o evento não veio de um elemento dentro da barra superior mobile ou de algum modal
+      if (!event.target.closest('.mobile-top-bar') && !event.target.closest('.modal')) {
         if (!event.target.matches('.dropbtn') && !event.target.matches('.dropdown-content a')) {
           var dropdowns = document.getElementsByClassName("dropdown-content");
           for (var i = 0; i < dropdowns.length; i++) {
@@ -966,11 +1058,13 @@
         const mobileExtraMenu = document.getElementById('mobileExtraMenu');
         const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu');
 
-        // Se o menu extra ou o modal "Quem Somos Nós" estiverem abertos, feche-os primeiro
+        // Se o menu extra ou qualquer modal estiverem abertos, feche-os primeiro
         if (mobileExtraMenu.classList.contains('open')) {
             mobileExtraMenu.classList.remove('open');
         }
         closeQuemSomosNosModal(); // Garante que o modal "Quem Somos Nós" esteja fechado
+        closeScriptModal(); // Garante que o modal "Script" esteja fechado
+        closeLinksModal(); // Garante que o modal "Links" esteja fechado
 
         mobileMainMenu.classList.toggle('open');
         toggleMainMenuIcon.classList.toggle('open'); // Gira a seta
@@ -982,12 +1076,15 @@
         const mobileExtraMenu = document.getElementById('mobileExtraMenu');
         const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu'); // O ícone da seta, para resetar
 
-        // Se o menu principal ou o modal "Quem Somos Nós" estiverem abertos, feche-os primeiro
+        // Se o menu principal ou qualquer modal estiverem abertos, feche-os primeiro
         if (mobileMainMenu.classList.contains('open')) {
             mobileMainMenu.classList.remove('open');
             toggleMainMenuIcon.classList.remove('open'); // Reseta a seta
         }
         closeQuemSomosNosModal(); // Garante que o modal "Quem Somos Nós" esteja fechado
+        closeScriptModal(); // Garante que o modal "Script" esteja fechado
+        closeLinksModal(); // Garante que o modal "Links" esteja fechado
+
 
         mobileExtraMenu.classList.toggle('open');
     }
@@ -1004,22 +1101,59 @@
     // Funções para o Modal Quem Somos Nós
     function openQuemSomosNosModal() {
         const modal = document.getElementById('quemSomosNosModal');
-        // Primeiro, fecha todos os outros menus mobile para evitar sobreposição
         closeAllMobileMenus(); // Garante que os menus de navegação fechem
-        modal.classList.add('show'); // Adiciona a classe para mostrar o modal
+        closeScriptModal(); // Garante que o outro modal esteja fechado
+        closeLinksModal(); // Garante que o modal "Links" esteja fechado
+        modal.classList.add('show');
     }
 
     function closeQuemSomosNosModal() {
         const modal = document.getElementById('quemSomosNosModal');
-        modal.classList.remove('show'); // Remove a classe para esconder o modal
+        modal.classList.remove('show');
     }
 
-    // Fechar o modal "Quem Somos Nós" ao clicar fora dele
+    // Funções para o Novo Modal Script
+    function openScriptModal() {
+        const modal = document.getElementById('scriptModal');
+        closeAllMobileMenus(); // Garante que os menus de navegação fechem
+        closeQuemSomosNosModal(); // Garante que o outro modal esteja fechado
+        closeLinksModal(); // Garante que o modal "Links" esteja fechado
+        modal.classList.add('show');
+    }
+
+    function closeScriptModal() {
+        const modal = document.getElementById('scriptModal');
+        modal.classList.remove('show');
+    }
+
+    // Funções para o Novo Modal Links
+    function openLinksModal() {
+        const modal = document.getElementById('linksModal');
+        closeAllMobileMenus(); // Garante que os menus de navegação fechem
+        closeQuemSomosNosModal(); // Garante que o outro modal esteja fechado
+        closeScriptModal(); // Garante que o modal "Script" esteja fechado
+        modal.classList.add('show');
+    }
+
+    function closeLinksModal() {
+        const modal = document.getElementById('linksModal');
+        modal.classList.remove('show');
+    }
+
+    // Fechar qualquer modal ao clicar fora dele
     window.addEventListener('click', function(event) {
-        const modal = document.getElementById('quemSomosNosModal');
-        // Verifica se o clique foi no fundo do modal (fora do conteúdo)
-        if (event.target == modal) {
+        const quemSomosNosModal = document.getElementById('quemSomosNosModal');
+        const scriptModal = document.getElementById('scriptModal');
+        const linksModal = document.getElementById('linksModal');
+
+        if (event.target == quemSomosNosModal) {
             closeQuemSomosNosModal();
+        }
+        if (event.target == scriptModal) {
+            closeScriptModal();
+        }
+        if (event.target == linksModal) {
+            closeLinksModal();
         }
     });
 
