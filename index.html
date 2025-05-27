@@ -352,13 +352,7 @@
       }
 
       .mobile-toggle-extra-menu { /* Hambúrguer para o menu extra */
-          transform: rotate(0deg);
-          transition: transform 0.3s ease;
-      }
-
-      .mobile-toggle-extra-menu.open {
-          /* Você pode querer uma animação para o hambúrguer virar um X, mas por simplicidade, manteremos a rotação ou nenhuma */
-          /* Por exemplo, um X pode ser &#10005; */
+        /* Não precisa de rotação se ele não muda de ícone */
       }
 
       /* Estilos para os conteúdos dos menus ocultos */
@@ -561,7 +555,7 @@
           <li><strong>Alteração no curso natural dos rios:</strong> afeta a fauna aquática, como peixes que precisam migrar.</li>
           <li><strong>Mudanças no clima local:</strong> o grande espelho d’água pode influenciar temperatura e umidade da região.</li>
           <li><strong>Emissão de gases de efeito estufa:</strong> matéria orgânica submersa emite metano, um gás poluente.</li>
-        </ul>
+          </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/ygb0tef.png')">
         <img src="https://i.imgur.com/ygb0tef.png" alt="Impactos Ambientais" />
@@ -678,7 +672,7 @@
                 return;
             }
 
-            closeAllMenus(); // Fecha ambos os menus mobile antes de rolar
+            closeAllMobileMenus(); // Fecha ambos os menus mobile antes de rolar
 
             document.querySelector(targetId).scrollIntoView({
                 behavior: 'smooth'
@@ -707,64 +701,52 @@
       }
     }
 
-    // --- Funções para os novos menus mobile ---
+    // --- Funções para os novos menus mobile independentes ---
 
-    // Função para fechar todos os menus mobile
-    function closeAllMenus() {
+    // Função para fechar TODOS os menus mobile
+    function closeAllMobileMenus() {
         const mobileMainMenu = document.getElementById('mobileMainMenu');
         const mobileExtraMenu = document.getElementById('mobileExtraMenu');
         const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu');
-        const toggleExtraMenuIcon = document.querySelector('.mobile-toggle-extra-menu');
+        // Não é necessário um toggle para o extra menu se ele não muda de ícone
 
         if (mobileMainMenu.classList.contains('open')) {
             mobileMainMenu.classList.remove('open');
-            toggleMainMenuIcon.classList.remove('open');
+            toggleMainMenuIcon.classList.remove('open'); // Reseta a seta
         }
         if (mobileExtraMenu.classList.contains('open')) {
             mobileExtraMenu.classList.remove('open');
-            // Se você quiser uma animação para o ícone de hambúrguer, pode adicionar aqui
         }
     }
 
-    // Função para abrir/fechar o menu principal (usando a seta)
+    // Função para abrir/fechar o menu principal (controlado pela SETA)
     function toggleMainMenu() {
         const mobileMainMenu = document.getElementById('mobileMainMenu');
-        const mobileExtraMenu = document.getElementById('mobileExtraMenu'); // Outro menu
+        const mobileExtraMenu = document.getElementById('mobileExtraMenu');
         const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu');
 
-        // Se o menu extra estiver aberto, feche-o primeiro
+        // Se o menu extra estiver aberto, feche-o primeiro para evitar menus sobrepostos
         if (mobileExtraMenu.classList.contains('open')) {
             mobileExtraMenu.classList.remove('open');
-            // Adicione aqui se houver uma classe para o ícone de hambúrguer que precisa ser removida
         }
 
         mobileMainMenu.classList.toggle('open');
-        toggleMainMenuIcon.classList.toggle('open');
+        toggleMainMenuIcon.classList.toggle('open'); // Gira a seta
     }
 
-    // Função para abrir/fechar o menu extra (usando o hambúrguer)
+    // Função para abrir/fechar o menu extra (controlado pelo HAMBÚRGUER)
     function toggleExtraMenu() {
-        const mobileMainMenu = document.getElementById('mobileMainMenu'); // Outro menu
+        const mobileMainMenu = document.getElementById('mobileMainMenu');
         const mobileExtraMenu = document.getElementById('mobileExtraMenu');
-        const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu'); // Ícone da seta
+        const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu'); // O ícone da seta, para resetar
 
-        // Se o menu principal estiver aberto, feche-o primeiro
+        // Se o menu principal estiver aberto, feche-o primeiro para evitar menus sobrepostos
         if (mobileMainMenu.classList.contains('open')) {
             mobileMainMenu.classList.remove('open');
-            toggleMainMenuIcon.classList.remove('open');
+            toggleMainMenuIcon.classList.remove('open'); // Reseta a seta
         }
 
         mobileExtraMenu.classList.toggle('open');
-        // Não há uma classe 'open' para o ícone do hambúrguer, mas poderia haver
-    }
-
-    // Função para fechar todos os menus e rolar para a seção (usada nos links do menu principal)
-    function closeAllMenusAndScroll(element) {
-        closeAllMenus();
-        const targetId = element.getAttribute('href');
-        if (targetId && targetId !== '#') {
-            document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-        }
     }
   </script>
 
