@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rio de Energia - Usina Hidrelétrica</title>
   <style>
-    /* Estilos Globais e para Desktop (mantidos como estão) */
+    /* Estilos Globais e para Desktop */
     * {
       margin: 0;
       padding: 0;
@@ -117,7 +117,7 @@
       opacity: 1;
     }
 
-    /* Navbar para Desktop (mantém a mesma aparência) */
+    /* Navbar para Desktop */
     .navbar-desktop {
         position: sticky;
         top: 0;
@@ -180,12 +180,12 @@
         display: block;
     }
 
-    /* Esconde o novo navbar mobile em desktop */
+    /* Esconde o navbar mobile em desktop */
     .navbar-mobile-wrapper {
         display: none;
     }
 
-    /* Seções de Conteúdo (mantidas como estão) */
+    /* Seções de Conteúdo */
     section {
       background: white;
       margin: 30px auto;
@@ -309,6 +309,168 @@
       margin-top: 40px;
     }
 
+    /* Estilos do Modal Quem Somos Nós */
+    .modal-quem-somos-nos {
+        display: none; /* Escondido por padrão */
+        position: fixed; /* Fixado na tela */
+        z-index: 2000; /* Acima de tudo */
+        left: 0;
+        top: 0;
+        width: 100%; /* Largura total */
+        height: 100%; /* Altura total */
+        overflow: auto; /* Habilita scroll se o conteúdo for grande */
+        background: url('https://imgur.com/6GbvOgy.png') no-repeat center center fixed; /* Fundo da escola */
+        background-size: cover;
+        /* display: flex;  Esta propriedade será ativada pelo JS quando o modal for mostrado */
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Adiciona um overlay escuro sobre a imagem de fundo do modal */
+    .modal-quem-somos-nos::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(13, 71, 161, 0.8); /* Azul escuro semi-transparente */
+        z-index: -1; /* Fica atrás do conteúdo, mas à frente do background */
+    }
+
+    .modal-content-quem-somos-nos {
+        position: relative;
+        background-color: rgba(255, 255, 255, 0.95); /* Fundo branco semi-transparente */
+        margin: auto;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        max-width: 700px;
+        text-align: center;
+        color: #333;
+        animation: fadeInModal 0.5s ease-out; /* Animação de entrada */
+        transform: scale(0.95); /* Começa um pouco menor */
+        transition: transform 0.3s ease-out; /* Suaviza a transição */
+    }
+
+    @keyframes fadeInModal {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-quem-somos-nos.show {
+        display: flex; /* Mostra o modal */
+    }
+
+    .modal-content-quem-somos-nos h1 {
+        color: #0d47a1;
+        font-size: 2.5em;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+    }
+
+    .modal-content-quem-somos-nos p {
+        font-size: 1.1em;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .close-button-quem-somos-nos {
+        color: #aaa;
+        float: right;
+        font-size: 40px;
+        font-weight: bold;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .close-button-quem-somos-nos:hover,
+    .close-button-quem-somos-nos:focus {
+        color: #ff5722;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .team-section-modal {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    .team-section-modal h2 {
+        color: #1a237e;
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .team-members-modal {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .member-card-modal {
+        background-color: #e0f2f7; /* Um azul mais claro */
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        width: 180px; /* Largura padrão do cartão */
+        text-align: center;
+    }
+
+    .member-card-modal h3 {
+        color: #0d47a1;
+        margin-top: 10px; /* Espaço para a imagem */
+        margin-bottom: 5px;
+        font-size: 1.2em;
+    }
+
+    .member-card-modal p {
+        font-size: 0.95em;
+        color: #555;
+        margin-bottom: 0;
+        line-height: 1.4;
+    }
+
+    .image-placeholder-modal {
+        width: 120px; /* Tamanho da imagem */
+        height: 120px;
+        background-color: #bbdefb; /* Azul claro */
+        border: 2px dashed #64b5f6; /* Borda tracejada */
+        border-radius: 50%; /* Circular */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 10px auto;
+        font-size: 0.8em;
+        color: #0d47a1;
+        text-align: center;
+        line-height: 1.3;
+        overflow: hidden;
+        position: relative;
+        flex-shrink: 0; /* Não deixa encolher */
+    }
+
+    .image-placeholder-modal img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none; /* Inicia escondida */
+    }
+
+    .image-placeholder-modal span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%; /* Para o texto caber */
+    }
+
     /* Estilos para Celular (Media Query) */
     @media (max-width: 768px) {
       /* Esconde o menu de desktop e mostra o de mobile */
@@ -351,7 +513,7 @@
           transform: rotate(90deg); /* Gira para baixo quando aberto */
       }
 
-      .mobile-toggle-extra-menu { /* Hambúrguer para o menu extra */
+      .mobile-toggle-extra-menu {
         /* Não precisa de rotação se ele não muda de ícone */
       }
 
@@ -399,7 +561,7 @@
           background-color: #ff5722;
       }
 
-      /* Demais estilos responsivos existentes (mantidos como estão) */
+      /* Demais estilos responsivos existentes */
       .hero h1 {
         font-size: 2em;
         padding: 0 10px;
@@ -475,6 +637,42 @@
       .close-btn img {
         width: 32px;
       }
+
+      /* Responsividade para o modal Quem Somos Nós */
+      .modal-content-quem-somos-nos {
+          margin: 20px;
+          padding: 25px;
+          max-width: 90%;
+      }
+
+      .modal-content-quem-somos-nos h1 {
+          font-size: 2em;
+      }
+
+      .modal-content-quem-somos-nos p {
+          font-size: 1em;
+      }
+
+      .team-members-modal {
+          flex-direction: column; /* Cartões empilham em telas pequenas */
+          align-items: center;
+      }
+
+      .member-card-modal {
+          width: 80%; /* Cartões mais largos em mobile */
+          max-width: 250px;
+      }
+
+      .image-placeholder-modal {
+          width: 100px;
+          height: 100px;
+      }
+
+      .close-button-quem-somos-nos {
+          font-size: 30px;
+          top: 5px;
+          right: 15px;
+      }
     }
   </style>
 </head>
@@ -496,7 +694,7 @@
       <li class="dropdown" onclick="toggleDropdown(this)">
         <a href="javascript:void(0)" class="dropbtn">&#9776; </a>
         <div class="dropdown-content">
-          <a href="#">Quem somos nós</a>
+          <a href="javascript:void(0)" onclick="openQuemSomosNosModal()">Quem somos nós</a>
           <a href="#">Script</a>
           <a href="#">Links</a>
         </div>
@@ -517,18 +715,18 @@
     </nav>
 
     <ul class="mobile-main-menu-content" id="mobileMainMenu">
-      <li><a href="#o-que-e" onclick="closeAllMenusAndScroll(this)">O que é?</a></li>
-      <li><a href="#impactos" onclick="closeAllMenusAndScroll(this)">Impactos Ambientais</a></li>
-      <li><a href="#vantagens" onclick="closeAllMenusAndScroll(this)">Vantagens</a></li>
-      <li><a href="#desvantagens" onclick="closeAllMenusAndScroll(this)">Desvantagens</a></li>
-      <li><a href="#uhe-lajeado" onclick="closeAllMenusAndScroll(this)">UHE Lajeado</a></li>
-      <li><a href="#curiosidades" onclick="closeAllMenusAndScroll(this)">Curiosidades</a></li>
+      <li><a href="#o-que-e" onclick="closeAllMobileMenusAndScroll(this)">O que é?</a></li>
+      <li><a href="#impactos" onclick="closeAllMobileMenusAndScroll(this)">Impactos Ambientais</a></li>
+      <li><a href="#vantagens" onclick="closeAllMobileMenusAndScroll(this)">Vantagens</a></li>
+      <li><a href="#desvantagens" onclick="closeAllMobileMenusAndScroll(this)">Desvantagens</a></li>
+      <li><a href="#uhe-lajeado" onclick="closeAllMobileMenusAndScroll(this)">UHE Lajeado</a></li>
+      <li><a href="#curiosidades" onclick="closeAllMobileMenusAndScroll(this)">Curiosidades</a></li>
     </ul>
 
     <ul class="mobile-extra-menu-content" id="mobileExtraMenu">
-      <li><a href="#" onclick="closeAllMenus()">Quem somos nós</a></li>
-      <li><a href="#" onclick="closeAllMenus()">Script</a></li>
-      <li><a href="#" onclick="closeAllMenus()">Links</a></li>
+      <li><a href="javascript:void(0)" onclick="openQuemSomosNosModal()">Quem somos nós</a></li>
+      <li><a href="#" onclick="closeAllMobileMenus()">Script</a></li>
+      <li><a href="#" onclick="closeAllMobileMenus()">Links</a></li>
     </ul>
   </div>
 
@@ -643,6 +841,39 @@
     <img id="modalImage" src="" alt="Imagem Expandida" />
   </div>
 
+  <div id="quemSomosNosModal" class="modal-quem-somos-nos">
+      <div class="modal-content-quem-somos-nos">
+          <span class="close-button-quem-somos-nos" onclick="closeQuemSomosNosModal()">&times;</span>
+          <h1>Nosso Projeto: Rio de Energia</h1>
+          <p>Este site foi desenvolvido como parte integrante da <strong>Amostra Científica da Escola Tiradentes em Palmas, TO</strong>. Nosso objetivo é explorar o tema da Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado), destacando sua importância, impactos e curiosidades.</p>
+          <p>Agradecemos a todos que nos apoiaram neste processo de pesquisa e criação.</p>
+
+          <div class="team-section-modal">
+              <h2>Quem Produziu o Site</h2>
+              <div class="team-members-modal">
+                  <div class="member-card-modal">
+                      <div class="image-placeholder-modal">
+                          <img src="" alt="Foto dos Criadores" id="team-img-placeholder">
+                          <span>[Imagem dos Criadores Aqui]</span>
+                      </div>
+                      <h3>João Emanoel</h3>
+                      <p>Desenvolvedor e Pesquisador</p>
+                  </div>
+                  <div class="member-card-modal">
+                      <h3>Gustavo Brito</h3>
+                      <p>Pesquisador e Conteudista</p>
+                  </div>
+                  <div class="member-card-modal">
+                      <h3>Artur Tolfo</h3>
+                      <p>Pesquisador e Designer</p>
+                  </div>
+              </div>
+              <p>Turma: <strong>23:08</strong></p>
+              <p>Escola: <strong>Centro de Ensino Médio Tiradentes Palmas - TO</strong></p>
+          </div>
+      </div>
+  </div>
+
   <footer>
     <p>&copy; 2025 Rio de Energia | Projeto educacional</p>
   </footer>
@@ -687,8 +918,8 @@
 
     // Fecha o dropdown de desktop se o usuário clicar fora dele
     window.onclick = function(event) {
-      // Verifica se o evento não veio de um elemento dentro da barra superior mobile
-      if (!event.target.closest('.mobile-top-bar')) {
+      // Verifica se o evento não veio de um elemento dentro da barra superior mobile ou do modal "Quem Somos Nós"
+      if (!event.target.closest('.mobile-top-bar') && !event.target.closest('.modal-quem-somos-nos')) {
         if (!event.target.matches('.dropbtn') && !event.target.matches('.dropdown-content a')) {
           var dropdowns = document.getElementsByClassName("dropdown-content");
           for (var i = 0; i < dropdowns.length; i++) {
@@ -703,12 +934,11 @@
 
     // --- Funções para os novos menus mobile independentes ---
 
-    // Função para fechar TODOS os menus mobile
+    // Função para fechar TODOS os menus mobile (seta e hambúrguer)
     function closeAllMobileMenus() {
         const mobileMainMenu = document.getElementById('mobileMainMenu');
         const mobileExtraMenu = document.getElementById('mobileExtraMenu');
         const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu');
-        // Não é necessário um toggle para o extra menu se ele não muda de ícone
 
         if (mobileMainMenu.classList.contains('open')) {
             mobileMainMenu.classList.remove('open');
@@ -725,10 +955,11 @@
         const mobileExtraMenu = document.getElementById('mobileExtraMenu');
         const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu');
 
-        // Se o menu extra estiver aberto, feche-o primeiro para evitar menus sobrepostos
+        // Se o menu extra ou o modal "Quem Somos Nós" estiverem abertos, feche-os primeiro
         if (mobileExtraMenu.classList.contains('open')) {
             mobileExtraMenu.classList.remove('open');
         }
+        closeQuemSomosNosModal(); // Garante que o modal "Quem Somos Nós" esteja fechado
 
         mobileMainMenu.classList.toggle('open');
         toggleMainMenuIcon.classList.toggle('open'); // Gira a seta
@@ -740,14 +971,61 @@
         const mobileExtraMenu = document.getElementById('mobileExtraMenu');
         const toggleMainMenuIcon = document.querySelector('.mobile-toggle-main-menu'); // O ícone da seta, para resetar
 
-        // Se o menu principal estiver aberto, feche-o primeiro para evitar menus sobrepostos
+        // Se o menu principal ou o modal "Quem Somos Nós" estiverem abertos, feche-os primeiro
         if (mobileMainMenu.classList.contains('open')) {
             mobileMainMenu.classList.remove('open');
             toggleMainMenuIcon.classList.remove('open'); // Reseta a seta
         }
+        closeQuemSomosNosModal(); // Garante que o modal "Quem Somos Nós" esteja fechado
 
         mobileExtraMenu.classList.toggle('open');
     }
+
+    // Função para fechar todos os menus mobile e rolar para a seção (usada nos links do menu principal)
+    function closeAllMobileMenusAndScroll(element) {
+        closeAllMobileMenus();
+        const targetId = element.getAttribute('href');
+        if (targetId && targetId !== '#') {
+            document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
+    // Funções para o Modal Quem Somos Nós
+    function openQuemSomosNosModal() {
+        const modal = document.getElementById('quemSomosNosModal');
+        // Primeiro, fecha todos os outros menus mobile para evitar sobreposição
+        closeAllMobileMenus(); // Garante que os menus de navegação fechem
+        modal.classList.add('show'); // Adiciona a classe para mostrar o modal
+    }
+
+    function closeQuemSomosNosModal() {
+        const modal = document.getElementById('quemSomosNosModal');
+        modal.classList.remove('show'); // Remove a classe para esconder o modal
+    }
+
+    // Fechar o modal "Quem Somos Nós" ao clicar fora dele
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('quemSomosNosModal');
+        // Verifica se o clique foi no fundo do modal (fora do conteúdo)
+        if (event.target == modal) {
+            closeQuemSomosNosModal();
+        }
+    });
+
+    // Opcional: Carregar a imagem dos criadores quando disponível
+    // function loadCreatorsImage() {
+    //     const imgPlaceholder = document.getElementById('team-img-placeholder');
+    //     // Substitua 'URL_DA_SUA_IMAGEM_AQUI.png' pela URL real da imagem de vocês
+    //     imgPlaceholder.src = 'URL_DA_SUA_IMAGEM_AQUI.png';
+    //     imgPlaceholder.style.display = 'block'; // Mostra a imagem
+    //     imgPlaceholder.nextElementSibling.style.display = 'none'; // Esconde o texto placeholder
+    // }
+
+    // Chame esta função quando tiver a imagem (exemplo: window.onload = loadCreatorsImage;)
+    // Ou descomente e atualize a URL quando a imagem estiver pronta
+    // window.onload = function() {
+    //     loadCreatorsImage();
+    // };
   </script>
 
 </body>
