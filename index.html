@@ -76,10 +76,11 @@
       background: #e64a19;
     }
 
+    /* Ajustes para o ícone de e-mail */
     .email-icon {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 30px; /* Mais afastado do topo */
+      right: 30px; /* Mais afastado da direita */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -88,8 +89,8 @@
     }
 
     .email-icon img {
-      width: 48px;
-      height: 48px;
+      width: 55px; /* Levemente maior */
+      height: 55px; /* Levemente maior */
       border-radius: 50%;
       transition: transform 0.3s;
     }
@@ -116,6 +117,7 @@
       visibility: visible;
       opacity: 1;
     }
+
 
     /* Navbar para Desktop */
     .navbar-desktop {
@@ -697,9 +699,14 @@
         margin-top: 25px;
       }
 
+      /* Ajustes para o ícone de e-mail em mobile */
       .email-icon {
-        top: 10px;
-        right: 10px;
+        top: 20px; /* Mais afastado do topo em mobile também */
+        right: 20px; /* Mais afastado da direita em mobile também */
+      }
+      .email-icon img {
+        width: 45px; /* Tamanho um pouco menor em mobile */
+        height: 45px; /* Tamanho um pouco menor em mobile */
       }
 
       section {
@@ -817,7 +824,7 @@
       <span class="tooltip">Fale Conosco</span>
     </a>
 
-    <h1>Energia no Coração do Tocantins</h1>
+    <h1>DO RIO A GERAÇÃO DE ENERGIA:</h1>
     <p>Conheça a História da Usina Luís Eduardo Magalhães</p>
     <a class="button button-scroll" onclick="document.getElementById('o-que-e').scrollIntoView({ behavior: 'smooth' });">Explorar Conteúdo</a>
   </div>
@@ -1024,8 +1031,8 @@
               <div class="team-members-modal">
                   <div class="member-card-modal">
                       <div class="image-placeholder-modal">
-                          <img src="" alt="Foto dos Criadores" id="team-img-placeholder">
-                          <span>[Imagem dos Criadores Aqui]</span>
+                          <img src="" alt="Foto dos Criadores" id="team-img-placeholder" style="display: none;">
+                          <span></span>
                       </div>
                       <h3>João Emanoel</h3>
                       <p>Desenvolvedor e Pesquisador</p>
@@ -1033,10 +1040,6 @@
                   <div class="member-card-modal">
                       <h3>Gustavo Brito</h3>
                       <p>Pesquisador e Conteudista</p>
-                  </div>
-                  <div class="member-card-modal">
-                      <h3>Artur Tolfo</h3>
-                      <p>Pesquisador e Designer</p>
                   </div>
               </div>
               <p>Turma: <strong>23:08</strong></p>
@@ -1116,6 +1119,8 @@
       if (event) event.stopPropagation();
       document.getElementById('imageModal').style.display = 'none';
     }
+
+    // Não há mais um listener especial para o emailLink; ele funciona por padrão.
 
     // Função para scroll suave (ajustada para fechar os menus mobile)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1299,7 +1304,7 @@
     //     // Substitua 'URL_DA_SUA_IMAGEM_AQUI.png' pela URL real da imagem de vocês
     //     imgPlaceholder.src = 'URL_DA_SUA_IMAGEM_AQUI.png';
     //     imgPlaceholder.style.display = 'block'; // Mostra a imagem
-    //     imgPlaceholder.nextElementSibling.style.display = 'none';
+    //     imgPlaceholder.nextElementSibling.style.display = 'none'; // Esconde o texto placeholder
     // }
 
     // Chame esta função quando tiver a imagem (exemplo: window.onload = loadCreatorsImage;)
