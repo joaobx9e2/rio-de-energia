@@ -127,7 +127,8 @@
         z-index: 1000;
         padding: 15px 0;
         text-align: center;
-        display: block; /* Visível por padrão em desktop */
+        display: block;
+        /* Visível por padrão em desktop */
     }
 
     .navbar-desktop ul {
@@ -194,26 +195,28 @@
       max-width: 1000px;
       box-shadow: 0 6px 16px rgba(0,0,0,0.08);
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
-      flex-wrap: wrap;
+      flex-direction: column; /* Imagens abaixo do texto */
+      align-items: center; /* Centraliza itens horizontalmente */
+      gap: 25px; /* Espaço entre o conteúdo e a imagem */
     }
 
     /* Correção para o "scroll-padding-top" */
     section[id] {
-      scroll-margin-top: 100px; /* Ajuste este valor de acordo com a altura da sua navbar */
+      scroll-margin-top: 100px;
+      /* Ajuste este valor de acordo com a altura da sua navbar */
     }
     /* Para mobile, pode ser necessário ajustar o valor devido à altura da mobile-top-bar */
     @media (max-width: 768px) {
         section[id] {
-            scroll-margin-top: 70px; /* Altura da mobile-top-bar */
+            scroll-margin-top: 70px;
+            /* Altura da mobile-top-bar */
         }
     }
 
 
     .section-content {
-      flex: 1 1 60%;
+      width: 100%; /* Ocupa a largura total da seção */
+      text-align: center; /* Centraliza o texto */
     }
 
     .section-content h2 {
@@ -230,32 +233,45 @@
     }
 
     .section-content p,
-    .section-content ul {
+    .section-content ul,
+    .section-content ol {
       font-size: 1.1em;
       line-height: 1.6;
+      max-width: 800px; /* Limita a largura do texto para melhor leitura */
+      margin-left: auto; /* Centraliza o bloco de texto */
+      margin-right: auto; /* Centraliza o bloco de texto */
+      text-align: left; /* Mantém o texto alinhado à esquerda dentro do seu container */
     }
 
-    .section-content ul {
+    .section-content ul,
+    .section-content ol {
         list-style-type: disc;
-        margin-left: 20px;
+        padding-left: 20px; /* Espaço para as bolinhas/números */
     }
 
-    .section-content ul li {
+    .section-content ol {
+        list-style-type: decimal;
+    }
+
+    .section-content ul li,
+    .section-content ol li {
         margin-bottom: 8px;
     }
 
     .section-image {
-      flex: 1 1 35%;
-      text-align: right;
+      width: 100%; /* Ocupa a largura total da seção para centralizar a imagem */
+      text-align: center; /* Centraliza a imagem */
       position: relative;
       cursor: pointer;
       display: block;
+      /* Removido margin-top para usar o gap do flexbox */
     }
 
     .section-image img {
       width: 100%;
-      max-width: 300px;
-      height: auto;
+      max-width: 650px; /* Largura máxima para desktop */
+      height: 350px; /* Altura fixa para uniformidade */
+      object-fit: cover; /* Recorta a imagem para preencher a área sem distorcer */
       border-radius: 12px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.2);
       transition: transform 0.3s;
@@ -323,20 +339,29 @@
 
     /* Estilos dos Modais (Quem Somos Nós, Script e Links) */
     .modal {
-        display: none; /* Escondido por padrão */
-        position: fixed; /* Fixado na tela */
-        z-index: 2000; /* Acima de tudo */
+        display: none;
+        /* Escondido por padrão */
+        position: fixed;
+        /* Fixado na tela */
+        z-index: 2000;
+        /* Acima de tudo */
         left: 0;
         top: 0;
-        width: 100%; /* Largura total */
-        height: 100%; /* Altura total */
-        background: url('https://imgur.com/6GbvOgy.png') no-repeat center center fixed; /* Fundo da escola */
+        width: 100%;
+        /* Largura total */
+        height: 100%;
+        /* Altura total */
+        background: url('https://imgur.com/6GbvOgy.png') no-repeat center center fixed;
+        /* Fundo da escola */
         background-size: cover;
         justify-content: center;
         align-items: center;
-        overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
-        -webkit-overflow-scrolling: touch; /* Suaviza o scroll em iOS */
-        padding: 20px 0; /* Padding vertical para garantir espaço */
+        overflow-y: auto;
+        /* Permite scroll se o conteúdo for muito grande */
+        -webkit-overflow-scrolling: touch;
+        /* Suaviza o scroll em iOS */
+        padding: 20px 0;
+        /* Padding vertical para garantir espaço */
     }
 
     /* Adiciona um overlay escuro sobre a imagem de fundo do modal */
@@ -347,36 +372,48 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(13, 71, 161, 0.5); /* Azul escuro semi-transparente, opacidade 0.5 */
-        z-index: -1; /* Fica atrás do conteúdo, mas à frente do background */
+        background: rgba(13, 71, 161, 0.5);
+        /* Azul escuro semi-transparente, opacidade 0.5 */
+        z-index: -1;
+        /* Fica atrás do conteúdo, mas à frente do background */
     }
 
     .modal-content {
         position: relative;
         background-color: rgba(255, 255, 255, 0.95); /* Fundo branco semi-transparente */
-        margin: auto; /* Centraliza no eixo Y em telas maiores */
+        margin: auto;
+        /* Centraliza no eixo Y em telas maiores */
         padding: 30px;
         border-radius: 12px;
         box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         max-width: 700px;
         text-align: center;
         color: #333;
-        animation: fadeInModal 0.5s ease-out; /* Animação de entrada */
-        transform: scale(0.95); /* Começa um pouco menor */
-        transition: transform 0.3s ease-out; /* Suaviza a transição */
-        width: 90%; /* Ocupa 90% da largura em telas menores */
-        max-height: 90vh; /* Limita a altura para caber na tela do celular */
-        overflow-y: auto; /* Permite scroll interno se o conteúdo exceder max-height */
+        animation: fadeInModal 0.5s ease-out;
+        /* Animação de entrada */
+        transform: scale(0.95);
+        /* Começa um pouco menor */
+        transition: transform 0.3s ease-out;
+        /* Suaviza a transição */
+        width: 90%;
+        /* Ocupa 90% da largura em telas menores */
+        max-height: 90vh;
+        /* Limita a altura para caber na tela do celular */
+        overflow-y: auto;
+        /* Permite scroll interno se o conteúdo exceder max-height */
         -webkit-overflow-scrolling: touch;
     }
 
     @keyframes fadeInModal {
-        from { opacity: 0; transform: scale(0.8); }
-        to { opacity: 1; transform: scale(1); }
+        from { opacity: 0; transform: scale(0.8);
+        }
+        to { opacity: 1; transform: scale(1);
+        }
     }
 
     .modal.show {
-        display: flex; /* Mostra o modal */
+        display: flex;
+        /* Mostra o modal */
     }
 
     .modal-content h1 {
@@ -400,10 +437,12 @@
     }
 
     .modal-content ul {
-        list-style: none; /* Remove bullets padrão */
+        list-style: none;
+        /* Remove bullets padrão */
         padding: 0;
         margin: 0;
-        text-align: left; /* Alinha os itens da lista à esquerda */
+        text-align: left;
+        /* Alinha os itens da lista à esquerda */
     }
 
     .modal-content ul li {
@@ -476,17 +515,20 @@
     }
 
     .member-card-modal {
-        background-color: #e0f2f7; /* Um azul mais claro */
+        background-color: #e0f2f7;
+        /* Um azul mais claro */
         padding: 15px 20px;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        width: 180px; /* Largura padrão do cartão */
+        width: 180px;
+        /* Largura padrão do cartão */
         text-align: center;
     }
 
     .member-card-modal h3 {
         color: #0d47a1;
-        margin-top: 10px; /* Espaço para a imagem */
+        margin-top: 10px;
+        /* Espaço para a imagem */
         margin-bottom: 5px;
         font-size: 1.2em;
     }
@@ -499,11 +541,15 @@
     }
 
     .image-placeholder-modal {
-        width: 120px; /* Tamanho da imagem */
+        width: 120px;
+        /* Tamanho da imagem */
         height: 120px;
-        background-color: #bbdefb; /* Azul claro */
-        border: 2px dashed #64b5f6; /* Borda tracejada */
-        border-radius: 50%; /* Circular */
+        background-color: #bbdefb;
+        /* Azul claro */
+        border: 2px dashed #64b5f6;
+        /* Borda tracejada */
+        border-radius: 50%;
+        /* Circular */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -514,7 +560,8 @@
         line-height: 1.3;
         overflow: hidden;
         position: relative;
-        flex-shrink: 0; /* Não deixa encolher */
+        flex-shrink: 0;
+        /* Não deixa encolher */
     }
 
     .image-placeholder-modal img {
@@ -539,7 +586,8 @@
           display: none;
       }
       .navbar-mobile-wrapper {
-          display: block; /* Mostra o novo wrapper do navbar mobile */
+          display: block;
+          /* Mostra o novo wrapper do navbar mobile */
           position: sticky;
           top: 0;
           width: 100%;
@@ -559,10 +607,12 @@
 
       /* Estilos para os ícones no top bar */
       .mobile-icon {
-          font-size: 1.8em; /* Tamanho comum para ambos os ícones */
+          font-size: 1.8em;
+          /* Tamanho comum para ambos os ícones */
           cursor: pointer;
           padding: 5px; /* Área clicável maior */
-          user-select: none; /* Evita seleção de texto */
+          user-select: none;
+          /* Evita seleção de texto */
       }
 
       .mobile-toggle-main-menu { /* Seta para o menu principal */
@@ -571,7 +621,8 @@
       }
 
       .mobile-toggle-main-menu.open {
-          transform: rotate(90deg); /* Gira para baixo quando aberto */
+          transform: rotate(90deg);
+          /* Gira para baixo quando aberto */
       }
 
       .mobile-toggle-extra-menu {
@@ -587,24 +638,30 @@
           background-color: #0d47a1; /* Mesma cor do navbar */
           width: 100%;
           max-height: 0; /* Começa escondido */
-          overflow: hidden; /* Esconde o conteúdo extra */
-          transition: max-height 0.4s ease-out; /* Animação suave */
+          overflow: hidden;
+          /* Esconde o conteúdo extra */
+          transition: max-height 0.4s ease-out;
+          /* Animação suave */
       }
 
       .mobile-main-menu-content.open,
       .mobile-extra-menu-content.open {
-          max-height: 500px; /* Altura suficiente para mostrar todos os itens */
+          max-height: 500px;
+          /* Altura suficiente para mostrar todos os itens */
       }
 
       .mobile-main-menu-content li,
       .mobile-extra-menu-content li {
-          text-align: left; /* Alinha o texto dos itens */
-          border-bottom: 1px solid rgba(255,255,255,0.1); /* Separador visual */
+          text-align: left;
+          /* Alinha o texto dos itens */
+          border-bottom: 1px solid rgba(255,255,255,0.1);
+          /* Separador visual */
       }
 
       .mobile-main-menu-content li:last-child,
       .mobile-extra-menu-content li:last-child {
-          border-bottom: none; /* Remove borda do último item */
+          border-bottom: none;
+          /* Remove borda do último item */
       }
 
       .mobile-main-menu-content li a,
@@ -612,7 +669,8 @@
           color: white;
           text-decoration: none;
           display: block; /* Para o padding funcionar na área toda */
-          padding: 15px 20px; /* Padding maior para facilitar o toque */
+          padding: 15px 20px;
+          /* Padding maior para facilitar o toque */
           font-size: 1.1em;
           transition: background-color 0.3s;
       }
@@ -645,7 +703,7 @@
       }
 
       section {
-        flex-direction: column;
+        flex-direction: column; /* Em mobile, já era column, mas reconfirmado */
         align-items: center;
         text-align: center;
         padding: 20px;
@@ -653,7 +711,7 @@
       }
 
       .section-content {
-        flex: 1 1 100%;
+        width: 100%; /* ocupa a largura total */
       }
 
       .section-content h2 {
@@ -664,20 +722,20 @@
       }
 
       .section-content p,
-      .section-content ul {
+      .section-content ul,
+      .section-content ol {
         font-size: 1em;
       }
 
       .section-image {
-        flex: 1 1 100%;
+        width: 100%; /* ocupa a largura total */
         text-align: center;
-        margin-top: 20px;
-        display: block;
+        margin-top: 15px; /* Ajuste para mobile */
       }
 
       .section-image img {
-        max-width: 100%;
-        height: auto;
+        max-width: 100%; /* volta ao 100% para mobile */
+        height: 200px; /* Altura fixa menor para mobile */
       }
 
       .overlay-text {
@@ -701,11 +759,13 @@
 
       /* Responsividade para os modais */
       .modal-content {
-          margin: 20px auto; /* Adicionado auto para centralizar */
+          margin: 20px auto;
+          /* Adicionado auto para centralizar */
           padding: 25px;
           max-width: 90%;
           min-height: unset; /* Remove min-height fixo */
-          height: auto; /* Altura automática */
+          height: auto;
+          /* Altura automática */
       }
 
       .modal-content h1 {
@@ -725,12 +785,14 @@
       }
 
       .team-members-modal {
-          flex-direction: column; /* Cartões empilham em telas pequenas */
+          flex-direction: column;
+          /* Cartões empilham em telas pequenas */
           align-items: center;
       }
 
       .member-card-modal {
-          width: 80%; /* Cartões mais largos em mobile */
+          width: 80%;
+          /* Cartões mais largos em mobile */
           max-width: 250px;
       }
 
@@ -756,20 +818,20 @@
     </a>
 
     <h1>Energia no Coração do Tocantins</h1>
-    <p>Descubra o poder da Usina Hidrelétrica Luís Eduardo Magalhães</p>
+    <p>Conheça a História da Usina Luís Eduardo Magalhães</p>
     <a class="button button-scroll" onclick="document.getElementById('o-que-e').scrollIntoView({ behavior: 'smooth' });">Explorar Conteúdo</a>
   </div>
 
   <nav class="navbar-desktop">
     <ul>
       <li class="dropdown" onclick="toggleDropdown(this)">
-        <a href="javascript:void(0)" class="dropbtn">&#9776; </a>
+        <a href="javascript:void(0)" class="dropbtn">&#9776;</a>
         <div class="dropdown-content">
           <a href="javascript:void(0)" onclick="openQuemSomosNosModal()">Quem somos nós</a>
           <a href="javascript:void(0)" onclick="openScriptModal()">Script</a> <a href="javascript:void(0)" onclick="openLinksModal()">Links</a> </div>
       </li>
       <li><a href="#o-que-e">O que é?</a></li>
-      <li><a href="#impactos">Impactos Ambientais</a></li>
+      <li><a href="#como-funciona">Como Funciona?</a></li> <li><a href="#impactos">Impactos Ambientais</a></li>
       <li><a href="#vantagens">Vantagens</a></li>
       <li><a href="#desvantagens">Desvantagens</a></li>
       <li><a href="#uhe-lajeado">UHE Lajeado</a></li>
@@ -777,7 +839,8 @@
     </ul>
   </nav>
 
-  <div class="navbar-mobile-wrapper">
+  <div
+  class="navbar-mobile-wrapper">
     <nav class="mobile-top-bar">
       <span class="mobile-icon mobile-toggle-extra-menu" onclick="toggleExtraMenu()">&#9776;</span>
       <span class="mobile-icon mobile-toggle-main-menu" onclick="toggleMainMenu()">&#9654;</span>
@@ -785,7 +848,7 @@
 
     <ul class="mobile-main-menu-content" id="mobileMainMenu">
       <li><a href="#o-que-e" onclick="closeAllMobileMenusAndScroll(this)">O que é?</a></li>
-      <li><a href="#impactos" onclick="closeAllMobileMenusAndScroll(this)">Impactos Ambientais</a></li>
+      <li><a href="#como-funciona" onclick="closeAllMobileMenusAndScroll(this)">Como Funciona?</a></li> <li><a href="#impactos" onclick="closeAllMobileMenusAndScroll(this)">Impactos Ambientais</a></li>
       <li><a href="#vantagens" onclick="closeAllMobileMenusAndScroll(this)">Vantagens</a></li>
       <li><a href="#desvantagens" onclick="closeAllMobileMenusAndScroll(this)">Desvantagens</a></li>
       <li><a href="#uhe-lajeado" onclick="closeAllMobileMenusAndScroll(this)">UHE Lajeado</a></li>
@@ -802,73 +865,112 @@
     <section id="o-que-e">
       <div class="section-content">
         <h2>O que é uma Usina Hidrelétrica?</h2>
-        <p>Uma usina hidrelétrica é uma instalação que gera energia elétrica a partir da força da água em movimento. Ela funciona aproveitando a correnteza dos rios: a água passa por turbinas gigantes, fazendo-as girar, e esse movimento gera eletricidade através de geradores.</p>
-        <p>É uma das fontes de energia mais utilizadas no Brasil, por ser <strong>renovável</strong>, <strong>limpa</strong> e ideal para o nosso país, que tem muitos rios com grande volume de água.</p>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/RlRKYq1.png')">
         <img src="https://i.imgur.com/RlRKYq1.png" alt="Usina" />
         <div class="overlay-text">Expandir</div>
       </div>
+      <div class="section-content"> <p>Uma usina hidrelétrica é uma instalação que gera energia elétrica a partir da força da água em movimento. Ela funciona aproveitando a correnteza dos rios: a água passa por turbinas gigantes, fazendo-as girar, e esse movimento gera eletricidade através de geradores.</p>
+        <p>É uma das fontes de energia mais utilizadas no Brasil, por ser <strong>renovável</strong>, <strong>limpa</strong> e ideal para o nosso país, que tem muitos rios com grande volume de água.</p>
+      </div>
+    </section>
+
+    <section id="como-funciona">
+        <div class="section-content">
+            <h2>Como funciona uma Usina Hidrelétrica?</h2>
+        </div>
+        <div class="section-image" onclick="expandImage('https://i.imgur.com/gKtpwdy.png')">
+            <img src="https://i.imgur.com/gKtpwdy.png" alt="Como Funciona uma Usina Hidrelétrica" />
+            <div class="overlay-text">Expandir</div>
+        </div>
+        <div class="section-content">
+            <ol>
+                <li><strong>Reservatório:</strong> A água é acumulada em uma represa, criando energia potencial.</li>
+                <li><strong>Queda d'água:</strong> A água é liberada e desce por tubos com muita força.</li>
+                <li><strong>Turbinas giram:</strong> A força da água faz as turbinas girarem, convertendo energia da água em movimento.</li>
+                <li><strong>Geração de energia:</strong> O gerador conectado às turbinas transforma esse movimento em energia elétrica.</li>
+                <li><strong>Transmissão:</strong> A energia gerada é enviada pelas linhas de transmissão até casas e cidades.</li>
+                <li><strong>Água retorna ao rio:</strong> Após passar pelas turbinas, a água volta ao rio sem ser consumida.</li>
+            </ol>
+        </div>
     </section>
 
     <section id="impactos">
       <div class="section-content">
         <h2>Impactos Ambientais das Usinas Hidrelétricas</h2>
-        <ul>
-          <li><strong>Alagamento de grandes áreas:</strong> causa perda de florestas, terras agricultáveis e habitats naturais.</li>
-          <li><strong>Deslocamento de populações ribeirinhas e indígenas:</strong> comunidades inteiras precisam ser realocadas.</li>
-          <li><strong>Alteração no curso natural dos rios:</strong> afeta a fauna aquática, como peixes que precisam migrar.</li>
-          <li><strong>Mudanças no clima local:</strong> o grande espelho d’água pode influenciar temperatura e umidade da região.</li>
-          <li><strong>Emissão de gases de efeito estufa:  </strong> matéria orgânica submersa emite metano, um gás poluente.</li>
-          </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/ygb0tef.png')">
         <img src="https://i.imgur.com/ygb0tef.png" alt="Impactos Ambientais" />
         <div class="overlay-text">Expandir</div>
+      </div>
+      <div class="section-content">
+        <ul>
+          <li><strong>Alagamento de grandes áreas:</strong> causa perda de florestas, terras agricultáveis e habitats naturais.</li>
+          <li><strong>Deslocamento de populações ribeirinhas e indígenas:</strong> comunidades inteiras precisam ser realocadas.</li>
+          <li><strong>Alteração no curso natural dos rios:</strong> afeta a fauna aquática, como peixes que precisam
+          migrar.</li>
+          <li><strong>Mudanças no clima local:</strong> o grande espelho d’água pode influenciar temperatura e umidade da região.</li>
+          <li><strong>Emissão de gases de efeito estufa:  </strong> matéria orgânica submersa emite metano, um gás poluente.</li>
+          </ul>
       </div>
     </section>
 
     <section id="vantagens">
       <div class="section-content">
         <h2>Vantagens das Usinas Hidrelétricas</h2>
-        <ul>
-          <li><strong>Fonte de energia renovável:</strong> usa a força da água, que é um recurso natural e inesgotável.</li>
-          <li><strong>Baixa emissão de poluentes:</strong> comparada a usinas termoelétricas, é muito mais limpa.</li>
-          <li><strong>Alta eficiência energética:</strong> gera grande quantidade de energia com custo operacional baixo.</li>
-          <li><strong>Ajuda no controle de cheias:</strong> algumas barragens regulam o nível dos rios.</li>
-          <li><strong>Estímulo econômico regional:</strong> gera empregos e desenvolvimento de infraestrutura.</li>
-        </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://i.imgur.com/U5VpWkw.png')">
         <img src="https://i.imgur.com/U5VpWkw.png" alt="Vantagens" />
         <div class="overlay-text">Expandir</div>
+      </div>
+      <div class="section-content">
+        <ul>
+          <li><strong>Fonte de energia renovável:</strong> usa a força da água, que é um recurso natural e inesgotável.</li>
+          <li><strong>Baixa emissão de poluentes:</strong> comparada a usinas termoelétricas, é muito mais limpa.</li>
+          <li><strong>Alta eficiência energética:</strong> gera grande quantidade de energia com
+          custo operacional baixo.</li>
+          <li><strong>Ajuda no controle de cheias:</strong> algumas barragens regulam o nível dos rios.</li>
+          <li><strong>Estímulo econômico regional:</strong> gera empregos e desenvolvimento de infraestrutura.</li>
+        </ul>
       </div>
     </section>
 
     <section id="desvantagens">
       <div class="section-content">
         <h2>Desvantagens das Usinas Hidrelétricas</h2>
-        <ul>
-          <li><strong>Alto custo de construção:</strong> demanda grandes investimentos e muitos anos para ficar pronta.</li>
-          <li><strong>Impactos ambientais severos:</strong> destruição de ecossistemas e perda de biodiversidade.</li>
-          <li><strong>Dependência do clima:</strong> em períodos de seca, a geração de energia é reduzida.</li>
-          <li><strong>Deslocamento de pessoas:</strong> comunidades inteiras podem ser removidas de suas terras.</li>
-          <li><strong>Risco de acidentes:</strong> falhas em barragens podem causar tragédias.</li>
-        </ul>
       </div>
       <div class="section-image" onclick="expandImage('https://imgur.com/HRI90HQ.png')">
         <img src="https://imgur.com/HRI90HQ.png" alt="Desvantagens" />
         <div class="overlay-text">Expandir</div>
       </div>
+      <div class="section-content">
+        <ul>
+          <li><strong>Alto custo de construção:</strong> demanda grandes investimentos e muitos anos para ficar pronta.</li>
+          <li><strong>Impactos ambientais severos:</strong> destruição de ecossistemas e perda de biodiversidade.</li>
+          <li><strong>Dependência do clima:</strong> em períodos de seca, a geração de energia é reduzida.</li>
+          <li><strong>Deslocamento de pessoas:</strong>
+          comunidades inteiras podem ser removidas de suas terras.</li>
+          <li><strong>Risco de acidentes:</strong> falhas em barragens podem causar tragédias.</li>
+        </ul>
+      </div>
     </section>
 
     <section id="uhe-lajeado">
       <div class="section-content">
-        <h2>Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado)</h2>
+        <h2>Usina Hidrelétrica Luís
+        Eduardo Magalhães (UHE Lajeado)</h2>
         <h3>História e Construção</h3>
-        <p>A construção da usina teve início em <strong>1º de julho de 1998</strong> e foi concluída em <strong>2002</strong>. Foi o primeiro grande empreendimento hidrelétrico no Tocantins e marcou a entrada do setor privado na construção de usinas no Brasil após a reestruturação do setor elétrico nos anos 1990.</p>
+      </div>
+      <div class="section-image" onclick="expandImage('https://imgur.com/f8je7SF.png')">
+        <img src="https://imgur.com/f8je7SF.png" alt="Usina Lajeado" />
+        <div class="overlay-text">Expandir</div>
+      </div>
+      <div class="section-content">
+        <p>A construção da usina teve início em <strong>1º de julho de 1998</strong> e foi concluída em <strong>2002</strong>.
+        Foi o primeiro grande empreendimento hidrelétrico no Tocantins e marcou a entrada do setor privado na construção de usinas no Brasil após a reestruturação do setor elétrico nos anos 1990.</p>
         <h3>Localização</h3>
-        <p>Situada no <strong>Rio Tocantins</strong>, entre os municípios de <strong>Miracema do Tocantins</strong> e <strong>Lajeado</strong>, a usina está a aproximadamente <strong>54 km de Palmas</strong>, capital do Tocantins. O reservatório formado pela barragem abrange os municípios de <strong>Miracema do Tocantins</strong>, <strong>Lajeado</strong>, <strong>Palmas</strong>, <strong>Porto Nacional</strong>, <strong>Brejinho de Nazaré</strong> e <strong>Ipueiras</strong>.</p>
+        <p>Situada no <strong>Rio Tocantins</strong>, entre os municípios de <strong>Miracema do Tocantins</strong> e <strong>Lajeado</strong>, a usina está a aproximadamente <strong>54 km de Palmas</strong>, capital do Tocantins.
+        O reservatório formado pela barragem abrange os municípios de <strong>Miracema do Tocantins</strong>, <strong>Lajeado</strong>, <strong>Palmas</strong>, <strong>Porto Nacional</strong>, <strong>Brejinho de Nazaré</strong> e <strong>Ipueiras</strong>.</p>
         <h3>Capacidade de Geração</h3>
         <ul>
           <li><strong>Potência instalada:</strong> 902,5 MW</li>
@@ -876,28 +978,28 @@
           <li><strong>Operadora:</strong> Investco S.A., composta por EDP South America (73%), CEB (20%) e CPFL (7%)</li>
         </ul>
         <h3>Economia Local</h3>
-        <p>Durante a construção, houve geração de empregos e desenvolvimento de infraestrutura. No entanto, após a conclusão, algumas atividades econômicas tradicionais, como a pesca artesanal e o turismo em praias naturais, foram impactadas negativamente.</p>
+        <p>Durante a construção, houve geração de empregos e desenvolvimento de infraestrutura.
+        No entanto, após a conclusão, algumas atividades econômicas tradicionais, como a pesca artesanal e o turismo em praias naturais, foram impactadas negativamente.</p>
         <h3>Turismo e Lazer</h3>
-        <p>O lago formado pela usina tornou-se um atrativo turístico, oferecendo opções de lazer como passeios de barco e pesca esportiva. A orla de Palmas, por exemplo, foi revitalizada para aproveitar o potencial turístico do lago.</p>
-      </div>
-      <div class="section-image" onclick="expandImage('https://imgur.com/f8je7SF.png')">
-        <img src="https://imgur.com/f8je7SF.png" alt="Usina Lajeado" />
-        <div class="overlay-text">Expandir</div>
+        <p>O lago formado pela usina tornou-se um atrativo turístico, oferecendo opções de lazer como passeios de barco e pesca esportiva.
+        A orla de Palmas, por exemplo, foi revitalizada para aproveitar o potencial turístico do lago.</p>
       </div>
     </section>
 
     <section id="curiosidades">
         <div class="section-content">
             <h2>Curiosidades sobre Usinas Hidrelétricas</h2>
+        </div>
+        <div class="section-image" style="display: none;"></div> <div class="section-content">
             <ul>
                 <li>O Brasil é um dos países que mais utilizam a energia hidrelétrica no mundo, devido à sua vasta rede de rios.</li>
                 <li>A Usina Hidrelétrica de Itaipu, na fronteira com o Paraguai, é uma das maiores do mundo em geração de energia.</li>
-                <li>Além de gerar eletricidade, muitas barragens hidrelétricas também ajudam no controle de inundações e no abastecimento de água para cidades e agricultura.</li>
+                <li>Além de gerar eletricidade, muitas barragens hidrelétricas também ajudam no controle de inundações
+                e no abastecimento de água para cidades e agricultura.</li>
                 <li>A construção de uma usina hidrelétrica é um projeto de engenharia complexo que pode levar décadas para ser concluído.</li>
                 <li>A energia hidrelétrica é considerada uma das fontes de energia mais baratas a longo prazo, após o alto investimento inicial na construção.</li>
             </ul>
         </div>
-        <div class="section-image" style="display: none;"></div>
     </section>
   </div>
 
@@ -912,7 +1014,9 @@
       <div class="modal-content">
           <span class="close-button" onclick="closeQuemSomosNosModal()">&times;</span>
           <h1>Nosso Projeto: Rio de Energia</h1>
-          <p>Este site foi desenvolvido como parte integrante da <strong>Amostra Científica da Escola Tiradentes em Palmas, TO</strong>. Nosso objetivo é explorar o tema da Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado), destacando sua importância, impactos e curiosidades.</p>
+          <p>Este site foi
+          desenvolvido como parte integrante da <strong>Amostra Científica da Escola Tiradentes em Palmas, TO</strong>.
+          Nosso objetivo é explorar o tema da Usina Hidrelétrica Luís Eduardo Magalhães (UHE Lajeado), destacando sua importância, impactos e curiosidades.</p>
           <p>Agradecemos a todos que nos apoiaram neste processo de pesquisa e criação.</p>
 
           <div class="team-section-modal">
@@ -945,10 +1049,12 @@
       <div class="modal-content">
           <span class="close-button" onclick="closeScriptModal()">&times;</span>
           <h1>Como o Site Foi Construído</h1>
-          <p>Este site foi cuidadosamente desenvolvido para apresentar informações sobre a Usina Hidrelétrica Luís Eduardo Magalhães. A estrutura, o design e o conteúdo foram produzidos e estruturados por <strong>João Emanoel</strong> e <strong>Gustavo Brito</strong>, utilizando as seguintes linguagens e tecnologias:</p>
+          <p>Este site foi cuidadosamente desenvolvido para apresentar informações sobre a Usina Hidrelétrica Luís Eduardo Magalhães.
+          A estrutura, o design e o conteúdo foram produzidos e estruturados por <strong>João Emanoel</strong> e <strong>Gustavo Brito</strong>, utilizando as seguintes linguagens e tecnologias:</p>
           <ul>
               <li><strong>HTML (HyperText Markup Language):</strong> Usado para estruturar o conteúdo do site, definindo os títulos, parágrafos, listas e as diferentes seções.</li>
-              <li><strong>CSS (Cascading Style Sheets):</strong> Responsável por toda a parte visual e de estilo do site, incluindo cores, fontes, layouts responsivos para celular e desktop, animações e o posicionamento de elementos.</li>
+              <li><strong>CSS (Cascading Style Sheets):</strong> Responsável por toda a parte visual e de estilo do site, incluindo cores, fontes, layouts responsivos para
+              celular e desktop, animações e o posicionamento de elementos.</li>
               <li><strong>JavaScript:</strong> Implementado para adicionar interatividade ao site, como a funcionalidade de expandir imagens ao clicar, o comportamento dos menus de navegação (tanto para desktop quanto para mobile) e a abertura/fechamento dos modais.</li>
           </ul>
           <p>Foi um trabalho detalhado para garantir que o site fosse não apenas funcional, mas também visualmente agradável e fácil de navegar em qualquer dispositivo.</p>
@@ -959,7 +1065,8 @@
       <div class="modal-content">
           <span class="close-button" onclick="closeLinksModal()">&times;</span>
           <h1>Fontes de Pesquisa</h1>
-          <p>Para a construção deste site, foram consultadas diversas fontes confiáveis para garantir a precisão e a qualidade das informações apresentadas. Abaixo, você encontra os links de referência:</p>
+          <p>Para a construção deste site, foram consultadas diversas fontes confiáveis para garantir a precisão e a qualidade das informações apresentadas.
+          Abaixo, você encontra os links de referência:</p>
           <ul>
               <li>
                   <a href="https://www.investco.com.br/pt-br/a-usina/uhe-lajeado" target="_blank">UHE Lajeado - Investco</a>
@@ -982,7 +1089,8 @@
                   <p>Portal do Operador Nacional do Sistema Elétrico, responsável pela coordenação e controle da operação das instalações de geração e transmissão de energia elétrica no Brasil.</p>
               </li>
               <li>
-                  <a href="https://pt.wikipedia.org/wiki/Usina_hidrel%C3%A9trica" target="_blank">Usina hidrelétrica - Wikipédia</a>
+                  <a href="https://pt.wikipedia.org/wiki/Usina_hidrel%C3%A9trica" target="_blank">Usina
+                  hidrelétrica - Wikipédia</a>
                   <p>Artigo da Wikipédia com informações gerais sobre usinas hidrelétricas, incluindo conceitos, história e impactos.</p>
               </li>
           </ul>
@@ -990,7 +1098,8 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 Rio de Energia | Projeto educacional</p>
+    <p>&copy;
+    2025 Rio de Energia | Projeto educacional</p>
   </footer>
 
   <script>
@@ -1030,7 +1139,6 @@
             }
         });
     });
-
     // --- Funções para o menu de desktop (hambúrguer normal) ---
     function toggleDropdown(element) {
         element.classList.toggle("active");
@@ -1080,11 +1188,14 @@
             mobileExtraMenu.classList.remove('open');
         }
         closeQuemSomosNosModal(); // Garante que o modal "Quem Somos Nós" esteja fechado
-        closeScriptModal(); // Garante que o modal "Script" esteja fechado
-        closeLinksModal(); // Garante que o modal "Links" esteja fechado
+        closeScriptModal();
+        // Garante que o modal "Script" esteja fechado
+        closeLinksModal();
+        // Garante que o modal "Links" esteja fechado
 
         mobileMainMenu.classList.toggle('open');
-        toggleMainMenuIcon.classList.toggle('open'); // Gira a seta
+        toggleMainMenuIcon.classList.toggle('open');
+        // Gira a seta
     }
 
     // Função para abrir/fechar o menu extra (controlado pelo HAMBÚRGUER)
@@ -1098,9 +1209,12 @@
             mobileMainMenu.classList.remove('open');
             toggleMainMenuIcon.classList.remove('open'); // Reseta a seta
         }
-        closeQuemSomosNosModal(); // Garante que o modal "Quem Somos Nós" esteja fechado
-        closeScriptModal(); // Garante que o modal "Script" esteja fechado
-        closeLinksModal(); // Garante que o modal "Links" esteja fechado
+        closeQuemSomosNosModal();
+        // Garante que o modal "Quem Somos Nós" esteja fechado
+        closeScriptModal();
+        // Garante que o modal "Script" esteja fechado
+        closeLinksModal();
+        // Garante que o modal "Links" esteja fechado
 
 
         mobileExtraMenu.classList.toggle('open');
@@ -1119,8 +1233,10 @@
     function openQuemSomosNosModal() {
         const modal = document.getElementById('quemSomosNosModal');
         closeAllMobileMenus(); // Garante que os menus de navegação fechem
-        closeScriptModal(); // Garante que o outro modal esteja fechado
-        closeLinksModal(); // Garante que o modal "Links" esteja fechado
+        closeScriptModal();
+        // Garante que o outro modal esteja fechado
+        closeLinksModal();
+        // Garante que o modal "Links" esteja fechado
         modal.classList.add('show');
     }
 
@@ -1133,8 +1249,10 @@
     function openScriptModal() {
         const modal = document.getElementById('scriptModal');
         closeAllMobileMenus(); // Garante que os menus de navegação fechem
-        closeQuemSomosNosModal(); // Garante que o outro modal esteja fechado
-        closeLinksModal(); // Garante que o modal "Links" esteja fechado
+        closeQuemSomosNosModal();
+        // Garante que o outro modal esteja fechado
+        closeLinksModal();
+        // Garante que o modal "Links" esteja fechado
         modal.classList.add('show');
     }
 
@@ -1147,8 +1265,10 @@
     function openLinksModal() {
         const modal = document.getElementById('linksModal');
         closeAllMobileMenus(); // Garante que os menus de navegação fechem
-        closeQuemSomosNosModal(); // Garante que o outro modal esteja fechado
-        closeScriptModal(); // Garante que o modal "Script" esteja fechado
+        closeQuemSomosNosModal();
+        // Garante que o outro modal esteja fechado
+        closeScriptModal();
+        // Garante que o modal "Script" esteja fechado
         modal.classList.add('show');
     }
 
@@ -1173,14 +1293,13 @@
             closeLinksModal();
         }
     });
-
     // Opcional: Carregar a imagem dos criadores quando disponível
     // function loadCreatorsImage() {
     //     const imgPlaceholder = document.getElementById('team-img-placeholder');
     //     // Substitua 'URL_DA_SUA_IMAGEM_AQUI.png' pela URL real da imagem de vocês
     //     imgPlaceholder.src = 'URL_DA_SUA_IMAGEM_AQUI.png';
     //     imgPlaceholder.style.display = 'block'; // Mostra a imagem
-    //     imgPlaceholder.nextElementSibling.style.display = 'none'; // Esconde o texto placeholder
+    //     imgPlaceholder.nextElementSibling.style.display = 'none';
     // }
 
     // Chame esta função quando tiver a imagem (exemplo: window.onload = loadCreatorsImage;)
