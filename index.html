@@ -542,16 +542,13 @@
         line-height: 1.4;
     }
 
-    .image-placeholder-modal {
+    /* Removida a bola de placeholder da imagem para o João */
+    /* .image-placeholder-modal {
         width: 120px;
-        /* Tamanho da imagem */
         height: 120px;
         background-color: #bbdefb;
-        /* Azul claro */
         border: 2px dashed #64b5f6;
-        /* Borda tracejada */
         border-radius: 50%;
-        /* Circular */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -563,14 +560,13 @@
         overflow: hidden;
         position: relative;
         flex-shrink: 0;
-        /* Não deixa encolher */
     }
 
     .image-placeholder-modal img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        display: none; /* Inicia escondida */
+        display: none;
     }
 
     .image-placeholder-modal span {
@@ -578,8 +574,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 90%; /* Para o texto caber */
-    }
+        width: 90%;
+    } */
 
     /* Estilos para Celular (Media Query) */
     @media (max-width: 768px) {
@@ -803,10 +799,11 @@
           max-width: 250px;
       }
 
-      .image-placeholder-modal {
+      /* Removido o placeholder da imagem em mobile também */
+      /* .image-placeholder-modal {
           width: 100px;
           height: 100px;
-      }
+      } */
 
       .close-button {
           font-size: 30px;
@@ -1033,15 +1030,15 @@
               <h2>Quem Produziu o Site</h2>
               <div class="team-members-modal">
                   <div class="member-card-modal">
-                      <div class="image-placeholder-modal">
-                          <img src="" alt="Foto dos Criadores" id="team-img-placeholder" style="display: none;">
-                          <span></span>
-                      </div>
                       <h3>João Emanoel</h3>
                       <p>Desenvolvedor e Pesquisador</p>
                   </div>
                   <div class="member-card-modal">
                       <h3>Gustavo Brito</h3>
+                      <p>Pesquisador e Conteudista</p>
+                  </div>
+                  <div class="member-card-modal">
+                      <h3>Artur Tolfo</h3>
                       <p>Pesquisador e Conteudista</p>
                   </div>
               </div>
