@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rio de Energia - Usina Hidrelétrica</title>
   <style>
-    /* Estilos Globais e para Desktop */
+
     * {
       margin: 0;
       padding: 0;
@@ -76,21 +76,21 @@
       background: #e64a19;
     }
 
-    /* Ajustes para o ícone de e-mail */
+    
     .email-icon {
       position: absolute;
-      top: 30px; /* Mais afastado do topo */
-      right: 30px; /* Mais afastado da direita */
+      top: 30px; 
+      right: 30px; 
       display: flex;
       flex-direction: column;
       align-items: center;
       text-decoration: none;
-      z-index: 2; /* Para ficar acima do menu */
+      z-index: 2; 
     }
 
     .email-icon img {
-      width: 55px; /* Levemente maior */
-      height: 55px; /* Levemente maior */
+      width: 55px; 
+      height: 55px; 
       border-radius: 50%;
       transition: transform 0.3s;
     }
@@ -119,7 +119,7 @@
     }
 
 
-    /* Navbar para Desktop */
+    
     .navbar-desktop {
         position: sticky;
         top: 0;
@@ -130,7 +130,7 @@
         padding: 15px 0;
         text-align: center;
         display: block;
-        /* Visível por padrão em desktop */
+        
     }
 
     .navbar-desktop ul {
@@ -183,7 +183,7 @@
         display: block;
     }
 
-    /* Esconde o navbar mobile em desktop */
+    
     .navbar-mobile-wrapper {
         display: none;
     }
@@ -197,28 +197,28 @@
       max-width: 1000px;
       box-shadow: 0 6px 16px rgba(0,0,0,0.08);
       display: flex;
-      flex-direction: column; /* Imagens abaixo do texto */
-      align-items: center; /* Centraliza itens horizontalmente */
-      gap: 25px; /* Espaço entre o conteúdo e a imagem */
+      flex-direction: column; 
+      align-items: center; 
+      gap: 25px; 
     }
 
-    /* Correção para o "scroll-padding-top" */
+    
     section[id] {
       scroll-margin-top: 100px;
-      /* Ajuste este valor de acordo com a altura da sua navbar */
+      
     }
-    /* Para mobile, pode ser necessário ajustar o valor devido à altura da mobile-top-bar */
+   
     @media (max-width: 768px) {
         section[id] {
             scroll-margin-top: 70px;
-            /* Altura da mobile-top-bar */
+           
         }
     }
 
 
     .section-content {
-      width: 100%; /* Ocupa a largura total da seção */
-      text-align: center; /* Centraliza o texto */
+      width: 100%; 
+      text-align: center; 
     }
 
     .section-content h2 {
@@ -239,16 +239,16 @@
     .section-content ol {
       font-size: 1.1em;
       line-height: 1.6;
-      max-width: 800px; /* Limita a largura do texto para melhor leitura */
-      margin-left: auto; /* Centraliza o bloco de texto */
-      margin-right: auto; /* Centraliza o bloco de texto */
-      text-align: left; /* Mantém o texto alinhado à esquerda dentro do seu container */
+      max-width: 800px; 
+      margin-left: auto; 
+      margin-right: auto; 
+      text-align: left; 
     }
 
     .section-content ul,
     .section-content ol {
         list-style-type: disc;
-        padding-left: 20px; /* Espaço para as bolinhas/números */
+        padding-left: 20px; 
     }
 
     .section-content ol {
@@ -261,19 +261,18 @@
     }
 
     .section-image {
-      width: 100%; /* Ocupa a largura total da seção para centralizar a imagem */
-      text-align: center; /* Centraliza a imagem */
+      width: 100%; 
+      text-align: center; 
       position: relative;
       cursor: pointer;
       display: block;
-      /* Removido margin-top para usar o gap do flexbox */
+      
     }
 
     .section-image img {
       width: 100%;
-      max-width: 650px; /* Largura máxima para desktop */
-      height: 350px; /* Altura fixa para uniformidade */
-      object-fit: cover; /* Recorta a imagem para preencher a área sem distorcer */
+      height: 350px; 
+      object-fit: cover; 
       border-radius: 12px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.2);
       transition: transform 0.3s;
@@ -339,31 +338,31 @@
       margin-top: 40px;
     }
 
-    /* Estilos dos Modais (Quem Somos Nós, Script e Links) */
+   
     .modal {
         display: none;
-        /* Escondido por padrão */
+        
         position: fixed;
-        /* Fixado na tela */
+      
         z-index: 2000;
-        /* Acima de tudo */
+      
         left: 0;
         top: 0;
         width: 100%;
-        /* Largura total */
+      
         height: 100%;
-        /* Altura total */
+        
         background: url('https://imgur.com/6GbvOgy.png') no-repeat center center fixed;
-        /* Fundo da escola */
+  
         background-size: cover;
         justify-content: center;
         align-items: center;
         overflow-y: auto;
-        /* Permite scroll se o conteúdo for muito grande */
+        
         -webkit-overflow-scrolling: touch;
-        /* Suaviza o scroll em iOS */
+       
         padding: 20px 0;
-        /* Padding vertical para garantir espaço */
+     
     }
 
     /* Adiciona um overlay escuro sobre a imagem de fundo do modal */
